@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания 1</title>
+</head>
+
+<body>
+<h1>Simple Task Manager</h1>
+    <button onclick="exec_task_1()">Задание 1</button>
+    <button onclick="exec_task_2()">Задание 2</button>
+    <button onclick="exec_task_3()">Задание 3</button>
+    <button onclick="exec_task_4()">Задание 4</button>
+    <button onclick="exec_task_5()">Задание 5</button>
+    <button onclick="exec_task_sw_1()">Задание sw 1</button>
+    <button onclick="exec_task_sw_2()">Задание sw 2</button>
+    <button onclick="exec_task_tr_1()">Задание tr 1</button>
+    <button onclick="exec_task_tr_2()">Задание tr 2</button>
+    <button onclick="exec_task_tr_3()">Задание tr 3</button>
+
+</body>
+<script>
+    function exec_task_1() {
+
+        let n = Number(prompt("Enter a number"))
+        if (n === 0) {
+            alert("It's zero")
+        }
+        if (n > 0) {
+            alert("It's positive")
+        }
+        if (n < 0) {
+            alert("It's negative")
+        }
+    }
+
+    function exec_task_2() {
+
+        let user_age = Number(prompt("Enter your age"))
+        if (isNaN(user_age)) {
+            alert("Enter correct data! (numbers)")
+        }
+        else if (user_age >= 0 && user_age <= 120) {
+            alert(`You're ${user_age} years old.`)
+        }
+        else {
+            alert("You don't exist.")
+        }
+    }
+
+    function exec_task_3() {
+
+        let n = Number(prompt("Enter a number"))
+        if (n < 0) {
+            n = n * (-1)
+        }
+        alert(`Modulated number: ${n}`)
+    }
+
+    function exec_task_4() {
+
+        let user_time = prompt("Enter your time. Format: hours:minutes:seconds").split(':')
+        for (let i = 0; i < user_time.length; i++) {
+            user_time[i] = Number(user_time[i])
+        }
+        if (user_time[0] > 24 || user_time[1] > 60 || user_time[2] > 60 || user_time[0] < 0 || user_time[1] < 0 || user_time[2] < 0) {
+            alert("Incorrect time!")
+        }
+        else {
+            alert("No errors founded")
+        }
+    }
+
+    function exec_task_5() {
+
+        let coords = prompt("Enter your coordinates. Format: x,y").split(",")
+        y = Number(coords[0])
+        x = Number(coords[1])
+
+        if (isNaN(y) || isNaN(x)) {
+            alert("Enter correct data!")
+        }
+        if (y === 0 || x === 0) {
+            alert("Don't use 0.")
+        }
+        if (y > 0 && x > 0) {
+            alert("First chetvertj kurwa")
+        }
+        if (y > 0 && x < 0) {
+            alert("Fourth chetvertj")
+        }
+        if (y < 0 && x > 0) {
+            alert("Third chetvertj")
+        }
+        if (y < 0 && x < 0) {
+            alert("Fourth chetvertj")
+        }
+    }
+
+    function exec_task_sw_1() {
+
+        let month = Number(prompt("Enter month number"))
+        switch (month) {                                // I could just use an array
+            case 1:
+                alert("Jan"); break;
+            case 2:
+                alert("Feb"); break;
+            case 3:
+                alert("Mar"); break;
+            case 4:
+                alert("Apr"); break;
+            case 5:
+                alert("May"); break;
+            case 6:
+                alert("Jun"); break;
+            case 7:
+                alert("Jul"); break;
+            case 8:
+                alert("Aug"); break;
+            case 9:
+                alert("Sep"); break;
+            case 10:
+                alert("Oct"); break;
+            case 11:
+                alert("Nov"); break;
+            case 12:
+                alert("Dec"); break;
+        }
+    }
+
+    function exec_task_sw_2() {
+
+        let calcns = prompt("Enter two number and a math operation. Format: number operation number").split(' ')
+
+        if (calcns.length != 3 || isNaN(calcns[0]) || isNaN(calcns[2])) {
+            alert("Incorrect format or data")
+        }
+        switch (calcns[1]) {
+            case '+':
+                alert(`Result: ${Number(calcns[0]) + Number(calcns[2])}`); break;
+            case '-':
+                alert(`Result: ${Number(calcns[0]) - Number(calcns[2])}`); break;
+            case '*':
+                alert(`Result: ${Number(calcns[0]) * Number(calcns[2])}`); break;
+            case '/':
+                alert(`Result: ${Number(calcns[0]) / Number(calcns[2])}`); break;
+        }
+    }
+
+    function exec_task_tr_1() {
+
+        let cmpds = prompt("Enter two numbers. Format: number number").split(' ')
+        alert(`${Number(cmpds[0]) > Number(cmpds[1]) ? cmpds[0] : cmpds[1]} is greater`)
+    }
+
+    function exec_task_tr_2() {
+
+        let number = Number(prompt("Enter a number"))
+        alert(`${number % 5 === 0 ? "Kratno k 5" : "Ne kratno k 5"}`)
+    }
+
+    function exec_task_tr_3() {
+
+        let planet_name = prompt("Enter a planet's name на русском, прошу использовать только первую букву как заглавную или писать строчными буквами");
+        alert(`${planet_name === "земля" || planet_name === "Земля" ? "Привет землянин!" : "Привет, инопланетянин!"}`);
+    }
+</script>
+
+</html>

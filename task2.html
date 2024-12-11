@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания 2</title>
+</head>
+
+<body>
+      <h1>Simple Task Manager</h1>
+      <button onclick="exec_task_1()">Задание 1</button>
+      <button onclick="exec_task_2()">Задание 2</button>
+      <button onclick="exec_task_3()">Задание 3</button>
+      <button onclick="exec_task_4()">Задание 4</button>
+      <button onclick="exec_task_5()">Задание 5</button>
+      <button onclick="exec_task_6()">Задание 6</button>
+      <button onclick="exec_task_7()">Задание 7</button>
+      <button onclick="exec_task_8()">Задание 8</button>
+      <button onclick="exec_task_9()">Задание 9</button>
+      <button onclick="exec_task_10()">Задание 10</button>
+</body>
+<script>
+      function exec_task_1() {
+            let user_age = Number(prompt("How old are you?"));
+
+            if (user_age < 0) {
+                  alert("Please enter a valid age!");
+            }
+            else if (user_age >= 0 && user_age <= 2) {
+                  alert("You're a baby");
+            }
+            else if (user_age >= 12 && user_age < 18) {
+                  alert("You're a teen");
+            }
+            else if (user_age >= 18 && user_age <= 60) {
+                  alert("You're an adult");
+            }
+            else {
+                  alert("You're old asf");
+            }
+      }
+
+      function exec_task_2() {
+
+            let usr_input = Number(prompt("Enter a number"))
+            let sym_arr = ['#', '@', '\$', '\*']
+            if (usr_input < sym_arr.length) {
+                  alert(sym_arr[usr_input - 1])
+            }
+      }
+
+      function exec_task_3() {
+
+            let digits = prompt("Enter a three-digit number").split('')
+            if (digits.length !== new Set(digits).size) {
+                  alert("It has duplicated numbers")
+            } else {
+                  alert("It doesn\'t have duplicated numbers")
+            }
+      }
+
+      function exec_task_4() {
+
+            let year = Number(prompt("Enter an year"))
+            if (year % 400 === 0 || year % 4 === 0 && year % 100 !== 0) {
+                  alert("Visokosnyy kurwa")
+            }
+            else {
+                  alert("Ne visokosnyy")
+            }
+      }
+
+      function exec_task_5() {
+
+            let numberstr = prompt("Enter a five-digit number")
+            if (numberstr[0] === numberstr[4]) {
+                  alert("It's a palindrom")
+            }
+            else {
+                  alert("Not a palindrom")
+            }
+      }
+
+      function exec_task_6() {
+
+            let curr = prompt("Введите доллары которые вы хотите перевести в другую валюту. Доступные валюты: eur, azn, uan. Формат: доллары валюта").split(' ')
+            if (curr[1] === "eur") {
+                  alert(curr[0] / 1.25)
+            }
+            if (curr[1] === "azn") {
+                  alert(curr[0] * 1.7)
+            }
+            if (curr[1] === "uan") {
+                  alert(curr[0] * 41)
+            }
+      }
+
+      function exec_task_7() {
+            let ask_pokupki = prompt("Введите цены покупок. Формат: покупка покупка покупка ...").split(' ');
+            let summ = 0;
+            for (let i = 0; i < ask_pokupki.length; i++) {
+                  if (isNaN(Number(ask_pokupki[i]))) {
+                        alert("Ошибка! Введите только числа, разделенные пробелами");
+                        return;
+                  }
+                  summ += Number(ask_pokupki[i]);
+            }
+
+            if (summ < 200) {
+                  alert(`Общая сумма: ${summ}. Скидка не предоставляется`);
+            }
+            else if (200 <= summ && summ < 300) {
+                  alert(`Общая сумма: ${summ}. Сумма со скидкой 3%: ${(summ - summ * 0.03).toFixed(2)}`);
+            }
+            else if (300 <= summ && summ < 500) {
+                  alert(`Общая сумма: ${summ}. Сумма со скидкой 5%: ${(summ - summ * 0.05).toFixed(2)}`);
+            }
+            else {
+                  alert(`Общая сумма: ${summ}. Сумма со скидкой 7%: ${(summ - summ * 0.07).toFixed(2)}`);
+            }
+      }
+
+      function exec_task_8() {
+
+            let circle_square = prompt("Введите длину окружности и периметр квадрата. Формат: окружность периметр")
+            if (Number(circle_square[0]) / 3.14 / 2 <= Number(circle_square[1]) / 4) {
+                  alert("Помесщается кружок")
+            }
+            else {
+                  alert("Не поместится кружок (я пользователь Artix Linux бтв)")
+            }
+      }
+
+      function exec_task_9() {
+
+            let answers = [prompt("Вилкой в глаз или в жопу раз?").toLowerCase(), prompt("2 + 2 = ?"), prompt("Аллаху акбар?").toLowerCase()]
+            let kurwamac = 0
+            if (answers[0] === "да") {
+                  kurwamac += 2
+            }
+            if (answers[1] === '4') {
+                  kurwamac += 2
+            }
+            if (answers[2] === "я хуйней не маюсь") {
+                  kurwamac += 2
+            }
+            alert(`Ты набрал ${kurwamac} баллов.`)
+      }
+
+      //task 10
+      function is_leap_year(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+      }
+
+      function get_days_in_month(month, year) {
+            if (month === 1 || month === 3 || month === 5 || month === 7 ||
+                  month === 8 || month === 10 || month === 12) {
+                  return 31;
+            }
+            else if (month === 2) {
+                  return is_leap_year(year) ? 29 : 28;
+            }
+            else {
+                  return 30;
+            }
+      }
+
+      function exec_task_10() {
+            
+            let date = prompt("Enter a date. Format: day.month.year").split('.')
+            for (let i = 0; i < date.length; i++) {
+                  date[i] = Number(date[i])
+            }
+            if (date[1] < 1 || date[1] > 12) {
+                  return 0
+            }
+            if (date[2] < 1) {
+                  return 0
+            }
+            let days_in_month = get_days_in_month(date[1], date[2]);
+
+            if (date[0] < 1 || date[0] > days_in_month) {
+                  return 0
+            }
+
+            let next_day = date[0];
+            let next_month = date[1];
+            let next_year = date[2];
+
+            if (date[0] === days_in_month) {
+                  next_day = 1;
+                  if (date[1] === 12) {
+                        next_month = 1;
+                        next_year = date[2] + 1;
+                  }
+                  else {
+                        next_month = date[1] + 1;
+                  }
+            }
+            else {
+                  next_day = date[0] + 1;
+            }
+
+            alert(`${next_day < 10 ? `0${next_day}` : next_day}.${next_month < 10 ? `0${next_month}` : next_month}.${next_year}`);
+      }
+
+</script>
+
+</html>
