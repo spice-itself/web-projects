@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания по Билетам</title>
+</head>
+
+<body>
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу чтобы запустить соответствующее задание.</p>
+
+
+      <script>
+            function arenums(arr) {
+                  for (var pt = 0; pt < arr.length; pt++) {
+                        if (isNaN(Number(arr[pt]))) {
+                              return false
+                        }
+                  }
+                  return true
+            }
+            function makenums(arr2) {
+                  for (var pt = 0; pt < arr2.length; pt++) {
+                        arr2[pt] = Number(arr2[pt])
+                  }
+                  return arr2
+            }
+            function errmsg() {
+                  alert("Неправильный ввод!\nПрограмма завершилась.")
+            }
+
+            function exec_b2_if() {
+                  var input = prompt("Напишите сколько вы нашли грибов.\nФормат ввода: Мы нашли в лесу ... грибов").split(' ')
+                  var shrooms = 0
+                  if (input.length != 6) {
+                        errmsg()
+                        return 1
+                  }
+                  shrooms = Number(input[4])
+                  if (shrooms === 1) {
+                        alert("1 гриб")
+                  }
+                  if (5 > shrooms > 1) {
+                        alert(`${shrooms} гриба`)
+                  }
+                  if (22 > shrooms >= 5) {
+                        alert(`${shrooms} грибов`)
+                  }
+                  // дальше лень
+            }
+
+            function exec_b2_sw() {
+                  var input = prompt("Введите полное название дня недели.").toLowerCase()
+                  switch (input) {
+                        case "понедельник":
+                              alert("В понедельник только физра.")
+                              break
+                        case "вторник":
+                              alert("Во вторник 8 физики.")
+                              break
+                        case "среда":
+                              alert("В среду алгебра и русский язык.")
+                              break
+                        case "четверг":
+                              alert("В четверг 3 казахского, 3 информатики и тройной понос.")
+                              break
+                        case "пятница":
+                              alert("В пятницу хз.")
+                              break
+                        default:
+                              alert("Выходной woo-hoo!")
+                  }
+            }
+
+            function exec_b3_if() {
+                  var input = prompt("Введите 3 числа.\nФормат ввода: число число число").split(' ')
+                  var mid = 0
+                  if (input.length != 3 || !arenums(input)) {
+                        errmsg()
+                        return 1
+                  }
+                  input = makenums(input)
+                  for (var i = 0; i < input.length; i++) {
+                        if (input[i] < input[i + 1] && input[i] > input[i - 1]) {
+                              mid = input[i]
+                        }
+                  }
+                  alert(`Среднее число: ${mid}`)
+            }
+
+            function exec_b3_sw() {
+                  var input = prompt("Введите месяц и год.\nФормат ввода: месяц.год").split('.')
+                  if (input.length != 2 || !arenums(input)) {
+                        errmsg()
+                        return 1
+                  }
+                  input = makenums(input)
+                  switch (input) {
+                        case 1:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 12:
+                              alert("31 дней.")
+                              break
+                        case 2:
+                              if ((input[1] % 4 === 0 && input[1] % 100 != 0) || (input[1] % 400 === 0)) {
+                                    alert("29 дня.")
+                              }
+                              else {
+                                    alert("28 дня.")
+                              }
+                              break
+                        default:
+                              alert("30 дня")
+                  }
+            }
+
+            function exec_b4_if() {
+                  var input = Number(prompt("Дракут, драка, дорогуша, сколько тебе лет, мое солнце?"))
+                  var heads = 1
+                  if (isNaN(input)) {
+                        errmsg()
+                        return 1
+                  }
+                  for (var i = 0; i < input + 1; i++) {
+                        heads = i < 100 ? heads * 3 : heads * 2
+                  }
+                  alert(`У тебя ${heads} головы.`)
+            }
+
+            function exec_b4_sw() {
+                  var input = Number(prompt("Введите номер дня недели."))
+                  if (isNaN(input)) {
+                        errmsg()
+                        return 1
+                  }
+                  switch (input) {
+                        case 1:
+                              alert("Понедельник.")
+                              break
+                        case 2:
+                              alert("Вторник.")
+                              break
+                        case 3:
+                              alert("Среда.")
+                              break
+                        case 4:
+                              alert("Четверг.")
+                              break
+                        case 5:
+                              alert("Пятница.")
+                              break
+                        case 6:
+                              alert("Суббота.")
+                              break
+                        case 7:
+                              alert("Воскресение.")
+                              break
+                        default:
+                              errmsg()
+                  }
+            }
+
+            function exec_b5_if() {
+                  var operands = prompt("Введите два однозначным числа со знаком умножения.\nФормат ввода: число*число").split('*')
+                  var result = 0
+                  if (!arenums(operands)) {
+                        errmsg()
+                        return 1
+                  }
+                  input = makenums(operands)
+                  result = operands[0] * operands[1]
+                  var answer = Number(prompt(`Введите результат умножения ${operands[0]}*${operands[1]}.`))
+                  if (isNaN(answer)) {
+                        errmsg()
+                        return 1
+                  }
+                  alert(`Ваш ответ ${answer} ${answer === result ? "правильный" : "неправильный"}.`)
+            }
+
+            function exec_b5_sw() {
+                  var input = prompt("Введите скобки.").split('')
+                  var result = ''
+                  for (var i = 0; i < input.length; i++) {
+                        switch (input[i]) {
+                              case '(':
+                                    result = `${result}Открытая_круглая_скобка `
+                                    break;
+                              case ')':
+                                    result = `${result}Закрытая_круглая_скобка `
+                                    break;
+                              case '[':
+                                    result = `${result}Открытая_квадратная_скобка `
+                                    break;
+                              case ']':
+                                    result = `${result}Закрытая_квадратная_скобка `
+                                    break;
+                              case '{':
+                                    result = `${result}Открытая_фигурная_скобка `
+                                    break;
+                              case '}':
+                                    result = `${result}Закрытая_фигурная_скобка `
+                                    break;
+                              case '<':
+                                    result = `${result}Открытая_типовая_скобка `
+                                    break;
+                              case '>':
+                                    result = `${result}Закрытая_типовая_скобка `
+                                    break;
+                              default:
+                                    result = `${result}Неизвестный_символ `
+                                    break;
+
+                        }
+                  }
+                  alert(`Результат: ${result}`)
+            }
+
+            // дальше не буду писать проверки
+            function exec_b6_if() {
+                  var clothet = makenums(prompt("Введите стороны шкафа x,y,z.\nФормат ввода: число,число,число").split(','))
+                  var door = makenums(prompt("Введите стороны двери x,y.\nФормат ввода: x,y").split(','))
+                  if (clothet[0] <= door[0] && clothet[1] <= door[1]) {
+                        alert("Проходит. (ДА)")
+                  } else {
+                        alert("Не проходит. (НЕТ)")
+                  }
+            }
+
+            function exec_b6_sw() {
+                  var input = Number(prompt("Введите число от 1 до 7."))
+                  switch (input) {
+                        case '1':
+                              alert("Красный.")
+                              break
+                        case '2':
+                              alert("Оранжевый.")
+                              break
+                        case '3':
+                              alert("Желтый.")
+                              break
+                        case '4':
+                              alert("Зеленый.")
+                              break
+                        case '5':
+                              alert("Голубой.")
+                              break
+                        case '6':
+                              alert("Синий.")
+                              break
+                        case '7':
+                              alert("Фиолетовый.")
+                              break
+                        default:
+                              alert("Неизвестный цвет.")
+                  }
+            }
+
+            function exec_b7_sw() {
+                  var glasnye = "аеуэыюя"
+                  var input = prompt("Введите русскую букву.").toLowerCase()
+                  if (input in glasnye) {
+                        alert("Гласный.")
+                  } else {
+                        alert("Согласный.")
+                  }
+            }
+
+            function exec_b8_if() {
+                  var input = makenums(prompt("Введите 3 одинаковых числа и 1 одного отличающегося. Формат ввода: число число число число").split(' '))
+                  var log = 0
+                  for (var i = 0; i < input.length; i++) {
+                        for (var j = 0; j < input.length; j++) {
+                              if (input[j] != input[i]) {
+                                    log = i
+                              }
+                        }
+                  }
+                  alert(`Индекс отличающегося числа: ${log}`)
+            }
+
+            function exec_b8_sw() {
+                  var input = Number(prompt("Введите число с 0 до 24."))
+                  switch (input) {
+                        case 0:
+                        case 24:
+                              alert("Полночь.")
+                              break
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                        case 9:
+                        case 10:
+                              alert("Утро.")
+                              break
+                        case 11:
+                        case 12:
+                        case 13:
+                        case 14:
+                        case 15:
+                        case 16:
+                              alert("Полдень.")
+                        case 17:
+                        case 18:
+                        case 19:
+                        case 20:
+                              alert("Вечер.")
+                              break
+                        default:
+                              alert("Ночь")
+                  }
+            }
+
+            
+      </script>
+</body>
+
+</html>
