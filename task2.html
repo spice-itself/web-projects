@@ -8,7 +8,8 @@
 </head>
 
 <body>
-      <h1>Simple Task Manager</h1>
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу чтобы запустить соответствующее задание.</p>
       <button onclick="exec_task_1()">Задание 1</button>
       <button onclick="exec_task_2()">Задание 2</button>
       <button onclick="exec_task_3()">Задание 3</button>
@@ -22,29 +23,29 @@
 </body>
 <script>
       function exec_task_1() {
-            let user_age = Number(prompt("How old are you?"));
+            let user_age = Number(prompt("Введите ваш возраст."));
 
             if (user_age < 0) {
-                  alert("Please enter a valid age!");
+                  alert("Неправильный возраст!");
             }
             else if (user_age >= 0 && user_age <= 2) {
-                  alert("You're a baby");
+                  alert("Вы ребенок.");
             }
             else if (user_age >= 12 && user_age < 18) {
-                  alert("You're a teen");
+                  alert("Вы подросток.");
             }
             else if (user_age >= 18 && user_age <= 60) {
-                  alert("You're an adult");
+                  alert("Вы взрослый.");
             }
             else {
-                  alert("You're old asf");
+                  alert("Вы пенсионер.");
             }
       }
 
       function exec_task_2() {
 
-            let usr_input = Number(prompt("Enter a number"))
-            let sym_arr = ['#', '@', '\$', '\*']
+            let usr_input = Number(prompt("Введите цифру."))
+            let sym_arr = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
             if (usr_input < sym_arr.length) {
                   alert(sym_arr[usr_input - 1])
             }
@@ -52,33 +53,57 @@
 
       function exec_task_3() {
 
-            let digits = prompt("Enter a three-digit number").split('')
-            if (digits.length !== new Set(digits).size) {
-                  alert("It has duplicated numbers")
-            } else {
-                  alert("It doesn\'t have duplicated numbers")
+            var get_answer = false
+            var input = prompt("Введите трехзначное число.")
+            for (let i = 0; i < input.length; i++) {
+                  const ptr = input[i]
+                  for (let j = 0; j < input.length; j++) {
+                        if (ptr === input[j]) {
+                              get_answer = true
+                        }
+                  }
+            }
+            if (get_answer) {
+                  alert("Есть повторяющиеся числа.")
+            }
+            else {
+                  alert("Числа не повторяются.")
             }
       }
 
       function exec_task_4() {
 
-            let year = Number(prompt("Enter an year"))
+            let year = Number(prompt("Введите число года."))
             if (year % 400 === 0 || year % 4 === 0 && year % 100 !== 0) {
-                  alert("Visokosnyy kurwa")
+                  alert("Это высокосный год.")
             }
             else {
-                  alert("Ne visokosnyy")
+                  alert("Это не высокосный год.")
             }
       }
 
+      function get_reversed_number(n) {
+            var exported = ''
+            var division = 1
+            for (let i = 1; i < 6; i++) {
+                  for (let j = 0; j < i; j++) {
+                        division = division * 10
+                  }
+                  exported = `${exported}${n % division}`
+            }
+            return Number(exported)
+      }
       function exec_task_5() {
-
-            let numberstr = prompt("Enter a five-digit number")
-            if (numberstr[0] === numberstr[4]) {
-                  alert("It's a palindrom")
+            var input = Number(prompt("Введите пятизначное число"))
+            if (input > 99999 || input < 10000) {
+                  alert("Неправильное число!")
+                  return 0
+            }
+            if (input === get_reversed_number(input)) {
+                  alert("Это полиндром.")
             }
             else {
-                  alert("Not a palindrom")
+                  alert("Это не полиндром.")
             }
       }
 
@@ -123,7 +148,7 @@
 
       function exec_task_8() {
 
-            let circle_square = prompt("Введите длину окружности и периметр квадрата. Формат: окружность периметр")
+            let circle_square = prompt("Введите длину окружности и периметр квадрата")
             if (Number(circle_square[0]) / 3.14 / 2 <= Number(circle_square[1]) / 4) {
                   alert("Помесщается кружок")
             }
@@ -134,42 +159,42 @@
 
       function exec_task_9() {
 
-            let answers = [prompt("Вилкой в глаз или в жопу раз?").toLowerCase(), prompt("2 + 2 = ?"), prompt("Аллаху акбар?").toLowerCase()]
+            let answers = [prompt("Я виден,но я не существую.\nЯ лежу, а могу стоять.\nЯ маленький, а могу быть огромным.\nКто я?").toLowerCase(),
+            prompt("Предположим что я истинный христианин и мои молитвы 100% сбываются. Ну, бог же не лотерея!\nЯ молю бога чтобы он сдвинул гору в местоположение детдома.\nВ детдоме тоже есть истинный христианин и, видя как к нему движется гора, он молит не бога остановить гору.\nЧья молитва исполнится?").toLowerCase(),
+            prompt("Введите следующее число.\n1, 4, 2, 8, 6, 14, 10, 19, ?").toLowerCase()]
             let kurwamac = 0
-            if (answers[0] === "да") {
+            if (answers[0] === "тень") {
                   kurwamac += 2
             }
-            if (answers[1] === '4') {
+            if (answers[1] === 'бог знает') {
                   kurwamac += 2
             }
-            if (answers[2] === "я хуйней не маюсь") {
+            if (answers[2] === "17") {
                   kurwamac += 2
             }
-            alert(`Ты набрал ${kurwamac} баллов.`)
+            alert(`Вы набрали ${kurwamac} баллов.`)
       }
 
       //task 10
       function is_leap_year(year) {
-            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            return (year % 4 === 0  &&  year % 100 !== 0)  ||  (year % 400 === 0);
       }
-
       function get_days_in_month(month, year) {
             if (month === 1 || month === 3 || month === 5 || month === 7 ||
                   month === 8 || month === 10 || month === 12) {
                   return 31;
             }
-            else if (month === 2) {
+            if (month === 2) {
                   return is_leap_year(year) ? 29 : 28;
             }
             else {
                   return 30;
             }
       }
-
       function exec_task_10() {
-            
-            let date = prompt("Enter a date. Format: day.month.year").split('.')
-            for (let i = 0; i < date.length; i++) {
+
+            let date = prompt("Введите дату. Формат:\nдень.месяц.год").split('.')
+            for (let i = 0; i < date.length; i++) {  
                   date[i] = Number(date[i])
             }
             if (date[1] < 1 || date[1] > 12) {
@@ -202,7 +227,7 @@
                   next_day = date[0] + 1;
             }
 
-            alert(`${next_day < 10 ? `0${next_day}` : next_day}.${next_month < 10 ? `0${next_month}` : next_month}.${next_year}`);
+            alert(`${next_day<=9?`0${next_day}`:next_day}.${next_month<=9?`0${next_month}`:next_month}.${next_year}`);
       }
 
 </script>
