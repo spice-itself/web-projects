@@ -10,7 +10,29 @@
 <body>
       <h1>Менеджер заданий</h1>
       <p>Нажмите на кнопки снизу чтобы запустить соответствующее задание.</p>
-
+      <button onclick="exec_b2_if()">Билет 2 if</button>
+      <button onclick="exec_b2_sw()">Билет 2 switch</button>
+      <button onclick="exec_b3_if()">Билет 3 if</button>
+      <button onclick="exec_b3_sw()">Билет 3 switch</button>
+      <button onclick="exec_b4_if()">Билет 4 if</button>
+      <button onclick="exec_b4_sw()">Билет 4 switch</button>
+      <button onclick="exec_b5_if()">Билет 5 if</button>
+      <button onclick="exec_b5_sw()">Билет 5 switch</button>
+      <button onclick="exec_b6_if()">Билет 6 if</button>
+      <button onclick="exec_b6_sw()">Билет 6 switch</button>
+      <button onclick="exec_b7_sw()">Билет 7 switch</button>
+      <button onclick="exec_b8_if()">Билет 8 if</button>
+      <button onclick="exec_b8_sw()">Билет 8 switch</button>
+      <button onclick="exec_b9_if()">Билет 9 if</button>
+      <button onclick="exec_b9_sw()">Билет 9 switch</button>
+      <button onclick="exec_b10_sw()">Билет 10 switch</button>
+      <button onclick="exec_b11_if()">Билет 11 if</button>
+      <button onclick="exec_b11_sw()">Билет 11 switch</button>
+      <button onclick="exec_b12_if1()">Билет 12 if 1</button>
+      <button onclick="exec_b12_if2()">Билет 12 if 2</button>
+      <button onclick="exec_b13_if()">Билет 13 if</button>
+      <button onclick="exec_b13_sw()">Билет 13 switch</button>
+      <button onclick="exec_b14_if()">Билет 14 if</button>
 
       <script>
             function arenums(arr) {
@@ -42,10 +64,10 @@
                   if (shrooms === 1) {
                         alert("1 гриб")
                   }
-                  if (5 > shrooms > 1) {
+                  if (5 > shrooms && shrooms > 1) {
                         alert(`${shrooms} гриба`)
                   }
-                  if (22 > shrooms >= 5) {
+                  if (22 > shrooms && shrooms >= 5) {
                         alert(`${shrooms} грибов`)
                   }
                   // дальше лень
@@ -83,7 +105,7 @@
                   }
                   input = makenums(input)
                   for (var i = 0; i < input.length; i++) {
-                        if (input[i] < input[i + 1] && input[i] > input[i - 1]) {
+                        if (input[i] < input[input.length - i] && input[i] > input[input.length - i]) {
                               mid = input[i]
                         }
                   }
@@ -97,7 +119,7 @@
                         return 1
                   }
                   input = makenums(input)
-                  switch (input) {
+                  switch (input[0]) {
                         case 1:
                         case 3:
                         case 4:
@@ -234,7 +256,7 @@
             }
 
             function exec_b6_sw() {
-                  var input = Number(prompt("Введите число от 1 до 7."))
+                  var input = prompt("Введите число от 1 до 7.")
                   switch (input) {
                         case '1':
                               alert("Красный.")
@@ -263,13 +285,15 @@
             }
 
             function exec_b7_sw() {
-                  var glasnye = "аеуэыюя"
+                  var glasnye = "аеуэыюя".split('')
                   var input = prompt("Введите русскую букву.").toLowerCase()
-                  if (input in glasnye) {
-                        alert("Гласный.")
-                  } else {
-                        alert("Согласный.")
+                  for (var i = 0; i < glasnye.length; i++) {
+                        if (input == glasnye[i]) {
+                              alert("Гласный.")
+                              return 0
+                        }
                   }
+                  alert("Согласный.")
             }
 
             function exec_b8_if() {
@@ -282,7 +306,7 @@
                               }
                         }
                   }
-                  alert(`Индекс отличающегося числа: ${log}`)
+                  alert(`Индекс отличающегося числа: ${log + 1}`)
             }
 
             function exec_b8_sw() {
@@ -322,7 +346,130 @@
                   }
             }
 
-            
+            function exec_b9_if() {
+                  var num = makenums(prompt("Введите 3 числа.\nФормат ввода: число число число").split(' '))
+                  if ((num[0] > num[1] && num[1] > num[2]) || (num[0] < num[1] && num[1] < num[2])) {
+                        for (var i = 0; i < num.length; i++) {
+                              num[i] = num[i] * 2
+                        }
+                  } else {
+                        for (var i = 0; i < num.length; i++) {
+                              num[i] = num[i] * (-1)
+                        }
+                  }
+                  alert(`${num[0]} ${num[1]} ${num[2]}`)
+            }
+            function exec_b9_sw() {
+                  var input = Number(prompt("Введите число месяца."))
+                  switch (input) {
+                        case 1: alert("jan"); break;
+                        case 2: alert("feb"); break;
+                        case 3: alert("mar"); break;
+                        case 4: alert("apr"); break;
+                        case 5: alert("may"); break;
+                        case 6: alert("jun"); break;
+                        case 7: alert("jul"); break;
+                        case 8: alert("aug"); break;
+                        case 9: alert("sep"); break;
+                        case 10: alert("oct"); break;
+                        case 11: alert("nov"); break;
+                        case 12: alert("dec"); break;
+                  }
+            }
+
+            function exec_b10_sw() {
+                  var input = prompt("Введите букву русскую.").toLowerCase()
+                  switch (input) {
+                        case 'б': alert("Согласный")
+                        default: alert("хз")
+                  }
+            }
+
+            function exec_b11_if() {
+                  var input = makenums(prompt("Введите три числа.\nФормат ввода: число число число").split(' '))
+                  var copy = []
+                  var emacs = 0
+                  var emacs1 = 0
+                  for (var i = 0; i < input.length; i++) {
+                        if (emacs < input[i]) {
+                              emacs = input[i]
+                        }
+                  }
+                  for (var f = 0; f < input.length; f++) {
+                        if (input[f] != emacs) {
+                              copy = `${copy} ${input[f]}`.split(' ')
+                        }
+                  }
+                  for (var j = 0; j < copy.length; j++) {
+                        if (emacs1 < copy[j]) {
+                              emacs1 = copy[j]
+                        }
+                  }
+                  alert(`Сумма двух наибольших: ${Number(emacs) + Number(emacs1)}`)
+            }
+
+            function exec_b11_sw() {
+                  var input = prompt("Введите символ.")
+                  switch (input) {
+                        case '&': alert("Амперсант."); break;
+                        default: alert("хз")
+                  }
+            }
+
+            function exec_b12_if1() {
+                  var input = makenums(prompt("Введите два числа.\nФормат ввода: число число").split(' '))
+                  if (input[0] === input[1]) {
+                        input[0] = 0
+                        input[1] = 0
+                  } else if (input[0] > input[1]) {
+                        input[0] = input[0] + input[0]
+                        input[1] = input[0] + input[1]
+                  } else {
+                        input[0] = input[1] + input[0]
+                        input[1] = input[1] + input[1]
+                  }
+                  alert(`${input[0]} ${input[1]}`)
+            }
+
+            function exec_b12_if2() {
+                  var input = Number(prompt("Введите насколько вы сдали экзамен."))
+                  var variants = ['Поступлю на бюджет.', 'Есть шанс поступить на бюджет', 'Экзамены сданы, рассматриваю все варианты.', 'А знаешь, всё ещё будет!']
+                  var posi = [80, 60, 40, 0]
+                  for (var i = 0; i < posi.length; i++) {
+                        if (input >= posi[i]) {
+                              alert(`${variants[i]}`)
+                              return 0
+                        }
+                  }
+            }
+
+            function exec_b13_if() {
+                  var input = makenums(prompt("Введите два числа.\nФормат ввода: число число").split(' '))
+                  var ptr = 0
+                  if (input[0] < input[1]) {
+                        ptr = input[0]
+                        input[0] = input[1]
+                        input[1] = ptr
+                  }
+                  alert(`${input[0]} ${input[1]}`)
+            }
+
+            function exec_b13_sw() {
+                  var fruits = ["яблоко", "банан", "апельсин", "груша", "виноград", "манго", "ананас", "киви", "персик", "слива"]
+                  var input = Number(prompt("Введите число меньшее или равное 10."))
+                  alert(`Ваш фрукт: ${fruits[input]}`)
+            }
+
+            function exec_b14_if() {
+                  var input = makenums(prompt("Введите 5 чисел.\nФормат ввода: число число число число число").split(' '))
+                  var count = 0
+                  for (var i = 0; i < input.length; i++) {
+                        if (input[i] > 0) {
+                              count++
+                        }
+                  }
+                  alert(`Положительных чисел: ${count}`)
+            }
       </script>
 </body>
 
