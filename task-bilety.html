@@ -387,7 +387,7 @@
 
             function exec_b11_if() {
                   var input = makenums(prompt("Введите три числа.\nФормат ввода: число число число").split(' '))
-                  var copy = []
+                  var copy = ''
                   var emacs = 0
                   var emacs1 = 0
                   for (var i = 0; i < input.length; i++) {
@@ -397,9 +397,10 @@
                   }
                   for (var f = 0; f < input.length; f++) {
                         if (input[f] != emacs) {
-                              copy = `${copy} ${input[f]}`.split(' ')
+                              copy = `${copy} ${input[f]}`
                         }
                   }
+                  copy = copy.split(' ')
                   for (var j = 0; j < copy.length; j++) {
                         if (emacs1 < copy[j]) {
                               emacs1 = copy[j]
