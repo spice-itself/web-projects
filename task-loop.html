@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания функций/циклы</title>
+</head>
+
+<body>
+
+
+      <script>
+            function makenums(arr2) {
+                  for (var pt = 0; pt < arr2.length; pt++) {
+                        arr2[pt] = Number(arr2[pt])
+                  }
+                  return arr2
+            }
+
+
+            function get_triangle() {
+                  corners = []
+                  let handle_in = prompt("Введите углы треугольника разделив их пробелами. A B C")
+                  handle_in = handle_in.split(' ')
+
+                  for (let i = 0; i < handle_in.length; i++) {
+                        corners.push(Number(handle_in[i]))
+                  }
+                  check_triangle()
+            }
+
+            function get_most_corner() {
+                  the_corner = 0;
+                  for (var i = 0; i < corners.length; i++) {
+                        if (corners[i] >= the_corner) {
+                              the_corner = corners[i]
+                        }
+                  }
+            }
+            function check_triangle() {
+                  let corners_sum = 0
+                  for (i = 0; i < corners.length; i++) {
+                        corners_sum += corners[i]
+                  }
+                  if (corners.length == 3) {
+                        console.log("Чек листа: ", corners)
+
+                        if (corners_sum != 180) {
+                              alert("Неправильный треугольник!")
+                              get_triangle()
+                        }
+                        else {
+                              get_most_corner()
+                              alert(review_triangle())
+                        }
+                  }
+                  else {
+                        alert("Неправильный ввод!")
+                        get_triangle()
+                  }
+            }
+            function review_triangle() {
+                  if (the_corner > 90) {
+                        return "Прямоугольный"
+                  }
+                  if (the_corner < 90) {
+                        return "Равнобедренный"
+                  }
+                  if (the_corner == 90) {
+                        return "Тупой"
+                  }
+                  if (corners[0] == corners[2] && corners[1] == corners[2]) {
+                        return "Остроугольный"
+                  }
+            }
+
+            function sha12() {
+                  const input = makenums(prompt("Введите 5 положительных числа.\nФормат ввода: число число число число число").split(' '))
+                  var sum = 0
+                  for (var i = 0; i < input.length; i++) {
+                        if (input[i] < 0) {
+                              alert("Ряд чисел содержат отрицательные числа или неизвестные символы!\nПрограмма завершена.")
+                              return 0
+                        }
+                  }
+                  for (var j = 0; j < input.length; j++) {
+                        sum = sum + input[j]
+                  }
+                  alert(`Сумма чисел в ряде: ${sum}`)
+            }
+
+            function restart_sha21() {
+                  sha21()
+            }
+            function sha21() {
+                  const input = Number(prompt("Введите число дня в неделе."))
+                  const subjects = ["Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра"]
+                  const days = ["понедельник", "вторник", "среду", "четверг", "пятницу"]
+                  if (input > 7 || input < 1) {
+                        alert("Нет такого дня!\nПовторите попытку.")
+                        restart_sha21()
+                  }
+                  if (input > 5) {
+                        alert("Выходной.")
+                  }
+                  alert(`Расписание на ${days[input - 1]}:\n${subjects[input - 1]}`)
+            }
+
+            function sha22() {
+                  sha12()
+            }
+
+            function sha31() {
+                  const input = Number(prompt("Введите число месяца."))
+                  const days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                  if (input > 12 || input < 1) {
+                        alert("Неизвестный месяц!\nПрограмма завершена.")
+                        return 0
+                  }
+                  if (input === 2) {
+                        if (confirm("Это высокосный год?")) {
+                              days_in_month[1] = 29
+                        }
+                  }
+                  alert(`В этом месяце ${days_in_month[input - 1]} дней.`)
+            }
+
+            function sha32() {
+                  const input = makenums(prompt("Введите диапозон чисел и длину ряда.\nформат ввода: число число").split(' '))
+                  var sum = 0
+                  var result = 0
+                  for (var len = input[1]; len > (-1); len--) {
+                        sum = sum + input[0]
+                  }
+                  var result = result / input[1]
+
+                  alert(`Средняя арифметиченская ряда чисел: ${result}`)
+            }
+
+            function restart_sha51() {
+                  sha51()
+            }
+            function sha51() {
+                  const input = makenums(prompt("Введите упражнение по таблице умножения.\nФормат ввода: число*число").split('*'))
+                  const answer = Number(prompt("Введите ваш ответ той задаче которую в ввели."))
+                  result = input[0] * input[1]
+                  if (answer != result) {
+                        alert("Неправильное решение!\nПовторите попытку.")
+                        restart_sha51()
+                  }
+                  alert("Правильно!")
+            }
+
+            function sha52() {
+                  const input = makenums(prompt("Введите ряд диапозонов чисел.\nФормат ввода: число,число,число...").split(','))
+                  console.log("Подтверждение: " + input)
+            }
+
+            function restart_sha61() {
+                  sha61()
+            }
+            function sha61() {
+                  const clothet = makenums(prompt("Введите стороны шкафа x,y,z.\nФормат ввода: число,число,число").split(','))
+                  var door = makenums(prompt("Введите стороны двери x,y.\nФормат ввода: x,y").split(','))
+                  if (clothet[0] <= door[0] && clothet[1] <= door[1]) {
+                        alert("Проходит. (ДА)")
+                  } else {
+                        alert("Не проходит. (НЕТ)")
+                        restart_sha61()
+                  }
+            }
+
+            function sha62() {
+                  const input = makenums(prompt("Введите аргумент геометрической прогрессий и предел\nФормат ввода: число число.").split())
+                  var progress = input[0]
+                  var result = ''
+                  var arg = 0
+                  for (var i = 0; i < input[1]; i++) {
+                        for (var j = 0; j < i; j++) {
+                              progress = progress * input[0]
+                        }
+                        result = `${result} ${progress}`
+                  }
+            }
+      </script>
+</body>
+
+</html>
