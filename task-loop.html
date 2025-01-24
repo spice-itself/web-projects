@@ -183,6 +183,41 @@
                         result = `${result} ${progress}`
                   }
             }
+
+            function sha71() {
+                  const input = Number(prompt("Введите количество дисков которые вы хотите купить."))
+                  const patterns = makenums(`${(input - input % 100) / 100} ${(input - input % 20) / 20}`.split())
+                  var sum = 0
+                  var count_100 = 0
+                  var count_30 = 0
+                  var count_2 = 0
+                  for (var i = 0; i < patterns[0]; i++) {
+                        if (input - sum >= 0) {
+                              sum = sum + 100
+                              count_100++
+                        }
+                        else {
+                              sum = sum - 100
+                              count_100--
+                              break;
+                        }
+                  }
+                  for (var j = 0; j < patterns[1]; j++) {
+                        if (input - sum >= 0) {
+                              sum = sum + 30
+                              count_30++
+                        }
+                        else {
+                              sum = sum - 30
+                              count_30--
+                              break;
+                        }
+                  }
+                  sum = sum + ((input - sum)*2)
+                  count_2 = (input - sum)*2
+
+                  alert(`Минимальная сумма покупки: ${sum}.\nКупите 100 дисков ${count_100} раза, 20 дисков ${count_30} раза и по одному диску ${count_2} раза.`)
+            }
       </script>
 </body>
 
