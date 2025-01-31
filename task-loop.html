@@ -17,7 +17,9 @@
                   }
                   return arr2
             }
-
+            function restart(func) {
+                  func() 
+            }
 
             function get_triangle() {
                   corners = []
@@ -81,7 +83,7 @@
                   for (var i = 0; i < input.length; i++) {
                         if (input[i] < 0) {
                               alert("Ряд чисел содержат отрицательные числа или неизвестные символы!\nПрограмма завершена.")
-                              return 0
+                              restart(sha12)
                         }
                   }
                   for (var j = 0; j < input.length; j++) {
@@ -172,7 +174,7 @@
             }
 
             function sha62() {
-                  const input = makenums(prompt("Введите аргумент геометрической прогрессий и предел\nФормат ввода: число число.").split())
+                  const input = makenums(prompt("Введите аргумент геометрической прогрессий и предел\nФормат ввода: число число.").split(' '))
                   var progress = input[0]
                   var result = ''
                   var arg = 0
@@ -186,7 +188,7 @@
 
             function sha71() {
                   const input = Number(prompt("Введите количество дисков которые вы хотите купить."))
-                  const patterns = makenums(`${(input - input % 100) / 100} ${(input - input % 20) / 20}`.split())
+                  const patterns = makenums(`${(input - input % 100) / 100} ${(input - input % 20) / 20}`.split(' '))
                   var sum = 0
                   var count_100 = 0
                   var count_30 = 0
@@ -213,10 +215,257 @@
                               break;
                         }
                   }
-                  sum = sum + ((input - sum)*2)
-                  count_2 = (input - sum)*2
+                  sum = sum + ((input - sum) * 2)
+                  count_2 = (input - sum) * 2
 
                   alert(`Минимальная сумма покупки: ${sum}.\nКупите 100 дисков ${count_100} раза, 20 дисков ${count_30} раза и по одному диску ${count_2} раза.`)
+            }
+            function restart_sha62() {
+                  sha62()
+            }
+            function sha72() {
+                  const input = prompt("Введите русскую букву.").toLowerCase()
+                  const glasnyye = ["а", "е", "ё", "э", "ы", "я", "ю", "о"]
+                  for (var i = 0; i < glasnyye.length; i++) {
+                        if (glasnyye[i] == input) {
+                              alert("Это гласная буква.\nПовторите ввод.")
+                              restart_sha62()
+                        }
+                  }
+                  alert("Это согласная буква.")
+            }
+
+            function sha73() {
+                  const input = makenums(prompt("Введите разность арифметической прогрессий и его предел.").split(' '))
+                  var arif_progress = 0
+                  for (var i = 0; i < input[1] + 1; i++) {
+                        arif_progress += input[0]
+                  }
+                  alert(`Результат: ${arif_progress}`)
+            }
+
+            function sha81() {
+                  const input = Number(prompt("Введите время суток (часы)."))
+                  if (input >= 22 && input < 4) {
+                        alert("Глубокая ночь.")
+                  }
+                  if (input >= 4 && input < 8) {
+                        alert("Ранее утро.")
+                  }
+                  if (input >= 8 && input < 10) {
+                        alert("Позднее утро.")
+                  }
+                  if (input >= 10 && input < 15) {
+                        alert("Обед.")
+                  }
+                  if (input >= 15 && input < 19) {
+                        alert("Раний вечер.")
+                  }
+                  if (input >= 19 && input < 22) {
+                        alert("Поздний вечер/ночь.")
+                  }
+                  else {
+                        alert("Невозможное время!\nПовторите ввод.")
+                        restart(sha81)
+                  }
+            }
+
+            function sha82() {
+                  const input = makenums(prompt("Введите ряд чисел.\nФормат ввода: число число число ...").split(' '))
+                  var negative_numbers = ''
+                  for (var i = 0; i < input.length; i++) {
+                        if (input[i] < 0) {
+                              negative_numbers = `${negative_numbers}${input[i]} `
+                        }
+                  }
+                  var sum_nega = 0
+                  negative_numbers = makenums(negative_numbers.trim().split())
+                  for (i = 0; i < negative_numbers.length; i++) {
+                        sum_nega = sum_nega + negative_numbers[i]
+                  }
+                  alert(`Средняя арифметическая отрицательных чисел в ряде: ${sum_nega / negative_numbers.length}`)
+            }
+
+            function sha91() {
+                  var input = Number(prompt("Введите число месяца."))
+                  switch (input) {
+                        case 1: alert("jan"); break;
+                        case 2: alert("feb"); break;
+                        case 3: alert("mar"); break;
+                        case 4: alert("apr"); break;
+                        case 5: alert("may"); break;
+                        case 6: alert("jun"); break;
+                        case 7: alert("jul"); break;
+                        case 8: alert("aug"); break;
+                        case 9: alert("sep"); break;
+                        case 10: alert("oct"); break;
+                        case 11: alert("nov"); break;
+                        case 12: alert("dec"); break;
+                        default: alert("Неизвестный месяц!\nПовторите ввод."); restart(sha91);
+                  }
+            }
+
+            function sha92() {
+                  const input = makenums(prompt("Введите ряд чисел.\nФормат ввода: число число число ...").split(' '))
+                  var positive_numbers = ''
+                  for (var i = 0; i < input.length; i++) {
+                        if (input[i] > 0) {
+                              positive_numbers = `${positive_numbers}${input[i]} `
+                        }
+                  }
+                  var sum_posi = 0
+                  positive_numbers = makenums(positive_numbers.trim().split(' '))
+                  for (i = 0; i < positive_numbers.length; i++) {
+                        sum_posi = sum_posi + positive_numbers[i]
+                  }
+                  alert(`Средняя арифметическая положительных чисел в ряде: ${sum_nega / positive_numbers.length}`)
+            }
+
+            function sha101() {
+                  const input = makenums(prompt("Введите градусы углов треугольника.\nФормат ввода: число число число").split(' '))
+                  if (input[0] === input[1] && input[1] === input[2]) {
+                        alert("Это правильный треугольник.")
+                  } else {
+                        alert("Треугольник неправильный.")
+                        restart(sha101)
+                  }
+            }
+
+            function sha102() {
+                  const input = Number(prompt("Введите число по которому нужно вывести таблицу умножения."))
+                  var mul_table = ''
+                  for (var i = 0; i < 11; i++) {
+                        mul_table = `${mul_table}${input} * ${i} = ?\n`
+                  }
+                  alert(mul_table)
+            }
+
+            function sha111() {
+                  var input = makenums(prompt("Введите три числа.\nФормат ввода: число число число").split(' '))
+                  if (input[0] === input[1] && input[1] === input[2]) {
+                        alert("Числа равны! Операция невозможна.\nповторите ввод.")
+                        restart(sha111)
+                  }
+                  else {
+                        var copy = ''
+                        var emacs = 0
+                        var emacs1 = 0
+                        for (var i = 0; i < input.length; i++) {
+                              if (emacs < input[i]) {
+                                    emacs = input[i]
+                              }
+                        }
+                        for (var f = 0; f < input.length; f++) {
+                              if (input[f] != emacs) {
+                                    copy = `${copy} ${input[f]}`
+                              }
+                        }
+                        copy = copy.split(' ')
+                        for (var j = 0; j < copy.length; j++) {
+                              if (emacs1 < copy[j]) {
+                                    emacs1 = copy[j]
+                              }
+                        }
+                        alert(`Сумма двух наибольших: ${Number(emacs) + Number(emacs1)}`)
+                  }
+            }
+
+            function sha112() {
+                  const input = makenums(prompt("Введите число и аргумент по которому нужно вывести таблицу умножения.\nФормат ввода: число число").split(' '))
+                  var mul_table = ''
+                  for (var i = 0; i < input[1]; i++) {
+                        mul_table = `${mul_table}${input[0]} * ${i} = ?\n`
+                  }
+                  alert(mul_table)
+            }
+
+            function sha121() {
+                  var input = Number(prompt("Введите насколько вы сдали экзамен."))
+                  if (input < 0 || input > 100) {
+                        alert("Неизвестное количество баллов!\nПовторите ввод.")
+                        restart(sha121)
+                  }
+                  var variants = ['Поступлю на бюджет.', 'Есть шанс поступить на бюджет', 'Экзамены сданы, рассматриваю все варианты.', 'А знаешь, всё ещё будет!']
+                  var posi = [80, 60, 40, 0]
+                  for (var i = 0; i < posi.length; i++) {
+                        if (input >= posi[i]) {
+                              alert(`${variants[i]}`)
+                              return 0
+                        }
+                  }
+            }
+
+            function sha122() {
+                  var input = makenums(prompt("Введите ряд чисел. Желательно длиной больше 5.\nФормат ввода: число число число ...").split(' '))
+                  let no_every_5 = ''
+                  for (let i = 0; i < input.length; i++) {
+                        if ((i+1) % 5 === 0) {
+                              no_every_5 = `${no_every_5}${input[i]} `
+                        }
+                  }
+                  no_every_5 = no_every_5.trim().split()
+                  alert(`Ряд без каждого пятого числаЖ ${no_every_5}`)
+            }
+
+            function sha131() {
+                  var fruits = ["яблоко", "банан", "апельсин", "груша", "виноград", "манго", "ананас", "киви", "персик", "слива"]
+                  var input = Number(prompt("Введите число меньшее или равное 10."))
+                  if (input < 1 || input > 10) {
+                        alert("Неправильный ввод!\nПовторите ввод.")
+                        restart(sha131)
+                  }
+                  alert(`Ваш фрукт: ${fruits[input-1]}`)
+            }
+
+            function sha132() {
+                  let input = makenums(prompt("Введите диапозон чисел и предел.\nФормат ввода: число число").split(' '))
+                  let garr = `${temp} `
+                  let real = ''
+                  for (let i = 0; i < input[1]; i++) {
+                        garr = `${garr}${i*input[0]} `
+                  }
+                  garr = makenums(garr.trim().split(' '))
+                  for (i = 0; i < garr.length; i++) {
+                        if (i % 3 === 0) {
+                              real = `${real}0 `
+                        }
+                        real = `${real}${garr[i]} `
+                  }
+                  alert(`Результат: ${real.trim()}`)
+            }
+
+            function sha141() {
+                  let input = makenums(prompt("Введите 5 чисел.\nФормат ввода: число число число число число").split())
+                  let log_posi = 0
+                  for (let i = 0; i < input.length; i++) {
+                        if (input[i] > 0) {
+                              log_posi++
+                        }
+                  }
+                  if (log_posi === 0) {
+                        alert("Ряд не содержит положительных чисел!\nПовторите ввод.")
+                        restart(sha141)
+                  }
+                  alert(`Количество положительных чисел: ${log_posi}`)
+            }
+
+            function sha142() {
+                  let input = makenums(prompt("Введите диапозон чисел и предел.\nФормат ввода: число число").split())
+                  let garr = ''
+                  let echo = ''
+                  for (let i = 0; i < input[1]; i++) {
+                        garr = `${garr}${input[0]*i} `
+                  }
+                  garr = makenums(garr.trim().split())
+                  for (i = 0; i < garr.length; i++) {
+                        if (i % 4 === 0) {
+                              garr[i] = garr[i]*2
+                        }
+                  }
+                  for (i = 0; i < garr.length; i++) {
+                        echo = `${echo}${garr[i]}`
+                  }
+                  alert(`Результат: ${echo.trim()}`)
             }
       </script>
 </body>
