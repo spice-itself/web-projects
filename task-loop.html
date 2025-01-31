@@ -91,17 +91,14 @@
                   }
                   alert(`Сумма чисел в ряде: ${sum}`)
             }
-
-            function restart_sha21() {
-                  sha21()
-            }
+            
             function sha21() {
                   const input = Number(prompt("Введите число дня в неделе."))
                   const subjects = ["Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра"]
                   const days = ["понедельник", "вторник", "среду", "четверг", "пятницу"]
                   if (input > 7 || input < 1) {
                         alert("Нет такого дня!\nПовторите попытку.")
-                        restart_sha21()
+                        restart(sha21)
                   }
                   if (input > 5) {
                         alert("Выходной.")
@@ -140,16 +137,13 @@
                   alert(`Средняя арифметиченская ряда чисел: ${result}`)
             }
 
-            function restart_sha51() {
-                  sha51()
-            }
             function sha51() {
                   const input = makenums(prompt("Введите упражнение по таблице умножения.\nФормат ввода: число*число").split('*'))
                   const answer = Number(prompt("Введите ваш ответ той задаче которую в ввели."))
                   result = input[0] * input[1]
                   if (answer != result) {
                         alert("Неправильное решение!\nПовторите попытку.")
-                        restart_sha51()
+                        restart(sha51)
                   }
                   alert("Правильно!")
             }
@@ -159,9 +153,6 @@
                   console.log("Подтверждение: " + input)
             }
 
-            function restart_sha61() {
-                  sha61()
-            }
             function sha61() {
                   const clothet = makenums(prompt("Введите стороны шкафа x,y,z.\nФормат ввода: число,число,число").split(','))
                   var door = makenums(prompt("Введите стороны двери x,y.\nФормат ввода: x,y").split(','))
@@ -169,7 +160,7 @@
                         alert("Проходит. (ДА)")
                   } else {
                         alert("Не проходит. (НЕТ)")
-                        restart_sha61()
+                        restart(sha61)
                   }
             }
 
@@ -220,16 +211,13 @@
 
                   alert(`Минимальная сумма покупки: ${sum}.\nКупите 100 дисков ${count_100} раза, 20 дисков ${count_30} раза и по одному диску ${count_2} раза.`)
             }
-            function restart_sha62() {
-                  sha62()
-            }
             function sha72() {
                   const input = prompt("Введите русскую букву.").toLowerCase()
                   const glasnyye = ["а", "е", "ё", "э", "ы", "я", "ю", "о"]
                   for (var i = 0; i < glasnyye.length; i++) {
                         if (glasnyye[i] == input) {
                               alert("Это гласная буква.\nПовторите ввод.")
-                              restart_sha62()
+                              restart(sha72)
                         }
                   }
                   alert("Это согласная буква.")
