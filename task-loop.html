@@ -6,7 +6,35 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Задания функций/циклы</title>
 </head>
-
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу для запуска соответствующих заданий.</p>
+      <button onclick="get_triangle()">Задание 1.1</button>
+      <button onclick="sha12()">Задание 1.2</button>
+      <button onclick="sha21()">Задание 2.1</button>
+      <button onclick="sha22()">Задание 2.2</button>
+      <button onclick="sha31()">Задание 3.1</button>
+      <button onclick="sha32()">Задание 3.2</button>
+      <button onclick="sha51()">Задание 5.1</button>
+      <button onclick="sha52()">Задание 5.2</button>
+      <button onclick="sha61()">Задание 6.1</button>
+      <button onclick="sha62()">Задание 6.2</button>
+      <button onclick="sha71()">Задание 7.1</button>
+      <button onclick="sha72()">Задание 7.2</button>
+      <button onclick="sha73()">Задание 7.3</button>
+      <button onclick="sha81()">Задание 8.1</button>
+      <button onclick="sha82()">Задание 8.2</button>
+      <button onclick="sha91()">Задание 9.1</button>
+      <button onclick="sha92()">Задание 9.2</button>
+      <button onclick="sha101()">Задание 10.1</button>
+      <button onclick="sha102()">Задание 10.2</button>
+      <button onclick="sha111()">Задание 11.1</button>
+      <button onclick="sha112()">Задание 11.2</button>
+      <button onclick="sha121()">Задание 12.1</button>
+      <button onclick="sha122()">Задание 12.2</button>
+      <button onclick="sha131()">Задание 13.1</button>
+      <button onclick="sha132()">Задание 13.2</button>
+      <button onclick="sha141()">Задание 14.1</button>
+      <button onclick="sha142()">Задание 14.2</button>
 <body>
 
 
@@ -64,16 +92,16 @@
             }
             function review_triangle() {
                   if (the_corner > 90) {
-                        return "Прямоугольный"
+                        return "Остроугольный"
                   }
                   if (the_corner < 90) {
-                        return "Равнобедренный"
-                  }
-                  if (the_corner == 90) {
                         return "Тупой"
                   }
+                  if (the_corner == 90) {
+                        return "Прямоугольный"
+                  }
                   if (corners[0] == corners[2] && corners[1] == corners[2]) {
-                        return "Остроугольный"
+                        return "Равнобедренный"
                   }
             }
 
@@ -91,14 +119,14 @@
                   }
                   alert(`Сумма чисел в ряде: ${sum}`)
             }
-            
+
             function sha21() {
                   const input = Number(prompt("Введите число дня в неделе."))
                   const subjects = ["Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра", "Физика\nФизра\nЛитра"]
                   const days = ["понедельник", "вторник", "среду", "четверг", "пятницу"]
                   if (input > 7 || input < 1) {
                         alert("Нет такого дня!\nПовторите попытку.")
-                        restart(sha21)
+                        restart_sha21()
                   }
                   if (input > 5) {
                         alert("Выходной.")
@@ -111,28 +139,28 @@
             }
 
             function sha31() {
-                  const input = Number(prompt("Введите число месяца."))
+                  const input = Number(prompt("Введите число месяца.")) - 1
                   const days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-                  if (input > 12 || input < 1) {
-                        alert("Неизвестный месяц!\nПрограмма завершена.")
-                        return 0
+                  if (input >= 12 || input < 0) {
+                        alert("Неизвестный месяц!\nПовторите ввод.")
+                        restart(sha31)
                   }
-                  if (input === 2) {
+                  if (input === 1) {
                         if (confirm("Это высокосный год?")) {
-                              days_in_month[1] = 29
+                              days_in_months[1] = 29
                         }
                   }
-                  alert(`В этом месяце ${days_in_month[input - 1]} дней.`)
+                  alert(`В этом месяце ${days_in_months[input]} дней.`)
             }
 
             function sha32() {
                   const input = makenums(prompt("Введите диапозон чисел и длину ряда.\nформат ввода: число число").split(' '))
                   var sum = 0
                   var result = 0
-                  for (var len = input[1]; len > (-1); len--) {
-                        sum = sum + input[0]
+                  for (var len = input[1]; len > 0; len--) {
+                        sum = sum + input[0]*len
                   }
-                  var result = result / input[1]
+                  var result = sum / input[1]
 
                   alert(`Средняя арифметиченская ряда чисел: ${result}`)
             }
@@ -145,7 +173,9 @@
                         alert("Неправильное решение!\nПовторите попытку.")
                         restart(sha51)
                   }
-                  alert("Правильно!")
+                  else{
+                        alert("Правильно!")
+                  }
             }
 
             function sha52() {
@@ -156,7 +186,7 @@
             function sha61() {
                   const clothet = makenums(prompt("Введите стороны шкафа x,y,z.\nФормат ввода: число,число,число").split(','))
                   var door = makenums(prompt("Введите стороны двери x,y.\nФормат ввода: x,y").split(','))
-                  if (clothet[0] <= door[0] && clothet[1] <= door[1]) {
+                  if (clothet[0] <= door[0] && clothet[1] <= door[1] || clothet[1] <= door[0] && clothet[0] <= door[1]) {
                         alert("Проходит. (ДА)")
                   } else {
                         alert("Не проходит. (НЕТ)")
@@ -175,41 +205,36 @@
                         }
                         result = `${result} ${progress}`
                   }
+                  alert(`${result}`)
             }
 
             function sha71() {
                   const input = Number(prompt("Введите количество дисков которые вы хотите купить."))
                   const patterns = makenums(`${(input - input % 100) / 100} ${(input - input % 20) / 20}`.split(' '))
                   var sum = 0
+                  var temp = 0
                   var count_100 = 0
                   var count_30 = 0
                   var count_2 = 0
                   for (var i = 0; i < patterns[0]; i++) {
-                        if (input - sum >= 0) {
+                        if (input - sum > input % 100) {
                               sum = sum + 100
                               count_100++
                         }
-                        else {
-                              sum = sum - 100
-                              count_100--
-                              break;
-                        }
                   }
+                  temp = sum
                   for (var j = 0; j < patterns[1]; j++) {
-                        if (input - sum >= 0) {
+                        if (input - temp > input % 20) {
                               sum = sum + 30
+                              temp = temp + 20
                               count_30++
                         }
-                        else {
-                              sum = sum - 30
-                              count_30--
-                              break;
-                        }
                   }
-                  sum = sum + ((input - sum) * 2)
-                  count_2 = (input - sum) * 2
+                  count_2 = (input - temp)
+                  sum = sum + (count_2 * 2)
+                  
 
-                  alert(`Минимальная сумма покупки: ${sum}.\nКупите 100 дисков ${count_100} раза, 20 дисков ${count_30} раза и по одному диску ${count_2} раза.`)
+                  alert(`Минимальная сумма покупки: ${sum}.\nКупите 100 дисков ${count_100} раза, 20 дисков ${count_30} раза ${count_2>0?`и по одному диску ${count_2} раза`:``}`)
             }
             function sha72() {
                   const input = prompt("Введите русскую букву.").toLowerCase()
@@ -237,19 +262,19 @@
                   if (input >= 22 && input < 4) {
                         alert("Глубокая ночь.")
                   }
-                  if (input >= 4 && input < 8) {
+                  else if (input >= 4 && input < 8) {
                         alert("Ранее утро.")
                   }
-                  if (input >= 8 && input < 10) {
+                  else if (input >= 8 && input < 10) {
                         alert("Позднее утро.")
                   }
-                  if (input >= 10 && input < 15) {
+                  else if (input >= 10 && input < 15) {
                         alert("Обед.")
                   }
-                  if (input >= 15 && input < 19) {
+                  else if (input >= 15 && input < 19) {
                         alert("Раний вечер.")
                   }
-                  if (input >= 19 && input < 22) {
+                  else if (input >= 19 && input < 22) {
                         alert("Поздний вечер/ночь.")
                   }
                   else {
@@ -267,7 +292,7 @@
                         }
                   }
                   var sum_nega = 0
-                  negative_numbers = makenums(negative_numbers.trim().split())
+                  negative_numbers = makenums(negative_numbers.trim().split(' '))
                   for (i = 0; i < negative_numbers.length; i++) {
                         sum_nega = sum_nega + negative_numbers[i]
                   }
@@ -306,12 +331,12 @@
                   for (i = 0; i < positive_numbers.length; i++) {
                         sum_posi = sum_posi + positive_numbers[i]
                   }
-                  alert(`Средняя арифметическая положительных чисел в ряде: ${sum_nega / positive_numbers.length}`)
+                  alert(`Средняя арифметическая положительных чисел в ряде: ${sum_posi / positive_numbers.length}`)
             }
 
             function sha101() {
                   const input = makenums(prompt("Введите градусы углов треугольника.\nФормат ввода: число число число").split(' '))
-                  if (input[0] === input[1] && input[1] === input[2]) {
+                  if (input[0] + input[1] + input[2] === 180) {
                         alert("Это правильный треугольник.")
                   } else {
                         alert("Треугольник неправильный.")
@@ -344,11 +369,11 @@
                               }
                         }
                         for (var f = 0; f < input.length; f++) {
-                              if (input[f] != emacs) {
+                              if (input[f] >= emacs) {
                                     copy = `${copy} ${input[f]}`
                               }
                         }
-                        copy = copy.split(' ')
+                        copy = copy.trim().split(' ')
                         for (var j = 0; j < copy.length; j++) {
                               if (emacs1 < copy[j]) {
                                     emacs1 = copy[j]
@@ -362,7 +387,7 @@
                   const input = makenums(prompt("Введите число и аргумент по которому нужно вывести таблицу умножения.\nФормат ввода: число число").split(' '))
                   var mul_table = ''
                   for (var i = 0; i < input[1]; i++) {
-                        mul_table = `${mul_table}${input[0]} * ${i} = ?\n`
+                        mul_table = `${mul_table}${input[0]} * ${i+1} = ?\n`
                   }
                   alert(mul_table)
             }
@@ -387,12 +412,12 @@
                   var input = makenums(prompt("Введите ряд чисел. Желательно длиной больше 5.\nФормат ввода: число число число ...").split(' '))
                   let no_every_5 = ''
                   for (let i = 0; i < input.length; i++) {
-                        if ((i+1) % 5 === 0) {
+                        if ((i+1) % 5 != 0) {
                               no_every_5 = `${no_every_5}${input[i]} `
                         }
                   }
                   no_every_5 = no_every_5.trim().split()
-                  alert(`Ряд без каждого пятого числаЖ ${no_every_5}`)
+                  alert(`Ряд без каждого пятого числа: ${no_every_5}`)
             }
 
             function sha131() {
@@ -407,9 +432,9 @@
 
             function sha132() {
                   let input = makenums(prompt("Введите диапозон чисел и предел.\nФормат ввода: число число").split(' '))
-                  let garr = `${temp} `
+                  let garr = `1`
                   let real = ''
-                  for (let i = 0; i < input[1]; i++) {
+                  for (let i = 1; i <= input[1]; i++) {
                         garr = `${garr}${i*input[0]} `
                   }
                   garr = makenums(garr.trim().split(' '))
@@ -423,7 +448,7 @@
             }
 
             function sha141() {
-                  let input = makenums(prompt("Введите 5 чисел.\nФормат ввода: число число число число число").split())
+                  let input = makenums(prompt("Введите 5 чисел.\nФормат ввода: число число число число число").split(' '))
                   let log_posi = 0
                   for (let i = 0; i < input.length; i++) {
                         if (input[i] > 0) {
@@ -438,20 +463,20 @@
             }
 
             function sha142() {
-                  let input = makenums(prompt("Введите диапозон чисел и предел.\nФормат ввода: число число").split())
+                  let input = makenums(prompt("Введите диапозон чисел и предел.\nФормат ввода: число число").split(' '))
                   let garr = ''
                   let echo = ''
-                  for (let i = 0; i < input[1]; i++) {
+                  for (let i = 1; i <= input[1]; i++) {
                         garr = `${garr}${input[0]*i} `
                   }
-                  garr = makenums(garr.trim().split())
-                  for (i = 0; i < garr.length; i++) {
+                  garr = makenums(garr.trim().split(' '))
+                  for (i = 1; i <= garr.length; i++) {
                         if (i % 4 === 0) {
-                              garr[i] = garr[i]*2
+                              garr[i-1] = garr[i-1]*2
                         }
                   }
                   for (i = 0; i < garr.length; i++) {
-                        echo = `${echo}${garr[i]}`
+                        echo = `${echo}${garr[i]} `
                   }
                   alert(`Результат: ${echo.trim()}`)
             }
