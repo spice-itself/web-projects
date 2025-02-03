@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Менеджер заданий</title>
+      <p>Нажмите на кнопки ниже для запуска заданий.</p>
+</head>
+<body>
+      <button onclick="exec_wh_1()">Задание while 1</button>
+      <button onclick="exec_wh_2()">Задание while 2</button>
+      <button onclick="exec_wh_3()">Задание while 3</button>
+      <button onclick="exec_wh_4()">Задание while 4</button>
+      <button onclick="exec_wh_5()">Задание while 5</button>
+      <button onclick="exec_dw_1()">Задание do while 1</button>
+      <button onclick="exec_dw_2()">Задание do while 2</button>
+      <button onclick="exec_for_1()">Задание for 1</button>
+      <button onclick="exec_for_2()">Задание for 2</button>
+      <button onclick="exec_for_3()">Задание for 3</button>
+      <script>
+            function readnums(string, knife_labels = ' ') {
+                  let arr2 = prompt(string).split(knife_labels)
+                  for (let pt = 0; pt < arr2.length; pt++) {
+                        arr2[pt] = Number(arr2[pt])
+                  }
+                  return arr2
+            }
+
+            function restart(func) {
+                  func() 
+            }
+
+
+            function exec_wh_1() {
+                  let input = Number(prompt("Введите число."))
+                  let memory = ''
+                  while (input > 0) {
+                        memory = `${memory}#`
+                        input--
+                  }
+                  alert(`Результат:\n${memory}`)
+            }
+
+            function exec_wh_2() {
+                  let input = Number(prompt("Введите число."))
+                  let memory = ''
+                  while (input > 0) {
+                        memory = `${memory} ${input}`
+                        input--
+                  }
+                  alert(`Результат: ${memory}`)
+            }
+
+            function exec_wh_3() {
+                  let input = readnums("Введите число и его степень.\nФормат ввода: число число")
+                  let input_0 = input[0]
+                  while (input[1] > 1) {
+                        input_0 = input[0]*input_0
+                        input[1]--
+                  }
+                  alert(`Результат: ${input_0}`)
+            }
+
+            function exec_wh_4() {
+                  let input = readnums("Введите 2 числа.\nФормат ввода: число число")
+                  let i = 0
+                  let j = 1
+                  while (i < input.length) {
+                        while (input[i] % j != 0) {
+                              input[i] = input[i] * j
+                              j = j * 10
+                        }
+                        i++
+                  }
+                  let ptr = 1
+                  let comdiv_count = 0
+                  while (Math.max(input[0], input[1]) != ptr) {
+                        if (input[0] % ptr === 0 && input[1] % ptr === 0) {
+                              comdiv_count++
+                        }
+                        if (input[0] < 0 && input[1] < 0) {
+                              ptr--
+                              if (ptr === 0) {
+                                    ptr--
+                              }
+                        }
+                        else {
+                              ptr++
+                              if (ptr === 0) {
+                                    ptr++
+                              }
+                        }
+                  }
+
+                  alert(`Количество общих делителей: ${comdiv_count}`)
+            }
+
+            function exec_wh_5() {
+                  let input = Number(prompt("Введите число которое вы хотите возвести в факториял."))
+                  let memory = 1
+                  while (input > 0) {
+                        memory = memory * input
+                        input--
+                  }
+                  alert(`Посчитанный факториял: ${memory}`)
+            }
+
+            function exec_dw_1() {
+                  let answer = 0
+                  do {
+                        answer = Number(prompt("2 + 2 * 2 = ?"))
+                  } while (answer != 6)
+            }
+
+            function exec_dw_2() {
+                  let thousand = 1000
+                  do {
+                        thousand = thousand / 2
+                        console.log(`Изменения: ${thousand}`)
+                  } while (thousand >= 50)
+            }
+
+            function exec_for_1() {
+                  let input = prompt("Введите число.")
+                  let memory = ''
+                  for (let i = 0; i < 100; i++) {
+                        if (i % input === 0) {
+                              memory = `${memory}${i}, `
+                        } 
+                  }
+                  alert(`Результат: ${memory > 1 ? memory.slice(0, -2) : memory}`)
+            }
+
+            function exec_for_2() {
+                  let input = prompt("Введите рандомные символы или строки разделив их пробелом.\nФормат ввода: что-то что-то что-то ...").split(' ')
+                  let result = ''
+                  for (let i = 0; i < input.length; i += 4) {
+                        result = `${result} ${input[i]}`
+                  }
+                  alert(`Результат: ${result}`)
+            }
+
+            function exec_for_3() {
+                  let input = Number(prompt("Введите число."))
+                  let check = true
+                  for (let i = 2; i < input; i++) {
+                        if (input % i === 0) {
+                              check = false
+                        }
+                  }
+                  if (check) {
+                        alert("Число простое.")
+                  }
+                  else {
+                        alert("Число не простое.")
+                  }
+            }
+      </script>
+</body>
+</html>
