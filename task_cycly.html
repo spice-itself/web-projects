@@ -66,7 +66,7 @@
                   let i = 0
                   let j = 1
                   while (i < input.length) {
-                        while (input[i] % j != 0) {
+                        while (Math.floor(input[i]) > input[i]) {
                               input[i] = input[i] * j
                               j = j * 10
                         }
