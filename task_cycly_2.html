@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Менеджер заданий</h1>
+    <p>Нажмите на кнопки чтобы запустить соответствующее задание.</p>
+    <button onclick="exec_task_1()">Задание 1</button>
+    <button onclick="exec_task_2()">Задание 2</button>
+    <button onclick="exec_task_3()">Задание 3</button>
+    <button onclick="exec_task_4()">Задание 4</button>
+    <button onclick="exec_task_5()">Задание 5</button>
+    <button onclick="exec_task_6()">Задание 6</button>
+    <button onclick="exec_task_7()">Задание 7</button>
+    <button onclick="exec_task_8()">Задание 8</button>
+    <button onclick="exec_task_9()">Задание 9</button>
+    <button onclick="exec_task_10()">Задание 10</button>
+    <script>
+        function readnums(string, knife_labels = ' ', skip) {
+            let arr2 = prompt(string).split(knife_labels)
+            for (let pt = 0; pt < arr2.length; pt++) {
+                if (pt === skip) {
+                    continue
+                }
+                arr2[pt] = Number(arr2[pt])
+            }
+            return arr2
+        }
+
+        function exec_task_1() {
+            let input = readnums("Введите ряд чисел.")
+            let sum = 0
+            for (let i = 0; i < input.length; i++) {
+                sum += input[i]
+            }
+            alert(`Сумма чисел: ${sum}`)
+        }
+
+        function exec_task_2() {
+            let input = readnums("Введите два числа.\nФормат ввода: число число")
+            let max_common_divisor = 0
+            for (let i = Math.max(input[0], input[1]); i > 0; i--) {
+                if (input[0] % i === 0 && input[1] % i === 0) {
+                    max_common_divisor = i
+                    break
+                }
+            }
+            alert(`Наибольший общий делитель: ${max_common_divisor}`)
+        }
+
+        function exec_task_3() {
+            let input = Number(prompt("Введите число."))
+            let all_divisors = ''
+            for (let i = 0; i < input; i++) {
+                if (input % i === 0) {
+                    all_divisors = `${all_divisors} ${i}`
+                }
+            }
+            alert(`Все делители числа ${input}: ${all_divisors.trim()}`)
+        }
+
+        function exec_task_4() {
+            let input = readnums("Введите ряд число.", '')
+            let counter = 0
+            for (let i = 0; i < input.length; i++) {
+                if (!isNaN(input[i])) {
+                    counter++
+                }
+            }
+            alert(`Количество чисел в строке: ${counter}`)
+        }
+
+        function exec_task_5() {
+            let input = 0
+            let count_posi = 0
+            let count_nega = 0
+            let count_zero = 0
+            let count_2 = 0
+            let count_1 = 0
+            for (let i = 0; i < 10; i++) {
+                input = Number(prompt(`Введите ${i + 1} число`))
+                if (input > 0) {
+                    count_posi++
+                }
+                if (input < 0) {
+                    count_nega++
+                }
+                if (input === 0) {
+                    count_zero++
+                }
+                if (input % 2 === 0) {
+                    count_2++
+                }
+                else {
+                    count_1++
+                }
+            }
+            alert(`Слева на право. Все положительные, отрицательные, нули, четные и нечетные числа: ${count_posi}, ${count_nega}, ${count_zero}, ${count_2}, ${count_1}`)
+        }
+
+        function exec_task_6() {
+            let boolus = true
+            let input
+            while (boolus) {
+                input = readnums("Введите два числа разделив их знаком математическое операций.\nФормат ввода: число знак число", ' ', 1)
+                switch (input[1]) {
+                    case '+': alert(`Результат: ${input[0] + input[2]}`); break;
+                    case '-': alert(`Результат: ${input[0] - input[2]}`); break;
+                    case '*': alert(`Результат: ${input[0] * input[2]}`); break;
+                    case '/': alert(`Результат: ${input[0] / input[2]}`); break;
+                    default: alert("Неизвестная операция!")
+                }
+                boolus = confirm("Запустить программу ещё раз?")
+            }
+        }
+
+        function exec_task_7() {
+            let input = readnums("Введите число и насколько его надо сдвинуть.\nФормат ввода: число число")
+            let buffer_10 = 1
+            let movement = buffer_10 * input[1]
+            while (Math.floor(input[0] / buffer_10) != 0) {
+                buffer_10 = buffer_10 * 10
+                movement += buffer_10 * input[1]
+            }
+            movement -= buffer_10 * input[1]
+            alert(`Рузельтат: ${input[0] + movement}`)
+        }
+
+        function exec_task_8() {
+            let days_in_weeks = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресение"]
+            let i = 0
+            do {
+                alert(`День недели: ${days_in_weeks[i]}`)
+                if (i >= 6) {
+                    i = -1
+                }
+                i++
+
+            } while (prompt("День недели. Хотите увидеть следующий день? (д/н)").toLowerCase() == 'д' ? true : false)
+        }
+
+        function exec_task_9() {
+            let tasks = ''
+            for (let i = 1; i < 11; i++) {
+
+                for (let j = 1; j < 11; j++) {
+
+                    tasks = `${tasks}${i} * ${j} = ?\n`
+                    if (j === 10) {
+                        tasks = `${tasks}\n`
+                    }
+                }
+            }
+            alert("Откройте консоль.")
+            console.log(`${tasks}`)
+        }
+
+        function exec_task_10() {
+            alert("Загадайте число от 0 до 100.")
+            let max = 100
+            let mid = 50
+            let min = 0
+            let hint
+            while (true) {
+                hint = prompt(`>, < или == ${mid}?`)
+                if (hint === '>') {
+                    min = mid
+                    mid = parseInt((max + min) / 2)
+                }
+                if (hint === '<') {
+                    max = mid
+                    mid = parseInt((max + min) / 2)
+                }
+                if (hint === '==') {
+                    break
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
