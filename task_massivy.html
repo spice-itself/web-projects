@@ -26,7 +26,7 @@
       <button onclick="t14()">Задание 14</button>
 
       <script>
-            function readnums(string, split_labels = ' ', skip, make_output = true) {
+            function readnums(string, split_labels = ' ', skip = null, make_output = true) {
                   let arr2 = prompt(string).split(split_labels)
                   let arr2out = ''
                   for (let pt = 0; pt < arr2.length; pt++) {
