@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания по массивам</title>
+</head>
+
+<body>
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу для запуска заданий.</p>
+      <button onclick="t1()">Задание 1</button>
+      <button onclick="t2()">Задание 2</button>
+      <button onclick="t3()">Задание 3</button>
+      <button onclick="t4()">Задание 4</button>
+      <button onclick="t5()">Задание 5</button>
+      <button onclick="t6()">Задание 6</button>
+      <button onclick="t7()">Задание 7</button>
+      <button onclick="t8()">Задание 8</button>
+      <button onclick="t9()">Задание 9</button>
+      <button onclick="t10()">Задание 10</button>
+      <button onclick="t11()">Задание 11</button>
+      <button onclick="t12()">Задание 12</button>
+      <button onclick="t13()">Задание 13</button>
+      <button onclick="t14()">Задание 14</button>
+
+      <script>
+            function readnums(string, split_labels = ' ', skip, make_output = true) {
+                  let arr2 = prompt(string).split(split_labels)
+                  let arr2out = ''
+                  for (let pt = 0; pt < arr2.length; pt++) {
+                        if (arr2[pt] === skip) {
+                              continue
+                        }
+                        arr2[pt] = Number(arr2[pt])
+                  }
+                  if (make_output === 1) {
+                        for (a in arr2) {
+                              arr2out = `${arr2out}${arr2[a]} `
+                        }
+                        alert(`Массив: ${arr2out.trim()}`)
+                  }
+
+                  return arr2
+            }
+            function cat(arr, splitter = ' ') {
+                  let out = ''
+                  for (item in arr) {
+                        out = `${out}${arr[item]}${splitter}`
+                  }
+                  return out.trim()
+            }
+            function swap_items(arr, it1, it2) {
+                  let resolv = arr[it1]
+                  arr[it1] = arr[it2]
+                  arr[it2] = resolv
+                  return arr
+            }
+
+
+            function t1() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let c = [0, 0, 0, 0, 0]
+                  let output = ""
+                  for (a in arr) {
+                        output = `${output} ${arr}`
+                        if (a > 0) {
+                              c[0]++
+                        }
+                        if (a < 0) {
+                              c[1]++
+                        }
+                        if (a == 0) {
+                              c[2]++
+                        }
+                        if (a % 2 == 0) {
+                              c[3]++
+                        }
+                        else {
+                              c[4]++
+                        }
+                  }
+                  alert(`Всего положительных, отрицательных, нулей, четных и нечетных чисел с лева на право: ${c[0]}, ${c[1]}, ${c[2]}, ${c[3]}, ${c[4]}`)
+            }
+
+            function t2() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let arr_negative = []
+                  for (item in arr) {
+                        arr_negative.push(arr[item]*(-1))
+                  }
+                  alert(`Результат: ${cat(arr_negative)}`)
+            }
+
+            function t3() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  alert(`Результат: ${cat(swap_items(arr, 0, arr.length - 1))}`)
+            }
+
+            function t4() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let swaps = readnums(`Какие элементы вы хотите поменять местами? Доступно от 1 до ${arr.length}.\nФормат ввода: число число`)
+                  alert(`Результат: ${cat(swap_items(arr, swaps[0] - 1, swaps[1] - 1))}`)
+            }
+
+            function t5() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let arr_reverse = []
+                  for (let i = arr.length - 1; i >= 0; i--) {
+                        arr_reverse.push(arr[i])
+                  }
+                  alert(`Результат: ${cat(arr_reverse)}`)
+            }
+
+            function t6() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let less = arr[0]
+                  for (item in arr) {
+                        if (arr[item] < less) {
+                              less = arr[item]
+                        }
+                  }
+                  alert(`Результат: ${less}`)
+            }
+
+            function t7() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let more = 0
+                  for (item in arr) {
+                        if (arr[item] > more) {
+                              more = arr[item]
+                        }
+                  }
+                  alert(`Результат: ${more}`)
+            }
+
+            function t8() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let more = 0, less = arr[0]
+                  for (item in arr) {
+                        if (arr[item] > more) {
+                              more = arr[item]
+                        }
+                        if (arr[item] < less) {
+                              less = arr[item]
+                        }
+                  }
+                  alert(`Наибольшее: ${more}\nНаименьшее: ${less}`)
+            }
+
+            function t9() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let arr_new = []
+                  let to_remove = Number(prompt("Введите элемент который вы хотите удалить."))
+                  for (item in arr) {
+                        if (arr[item] != to_remove) {
+                              arr_new.push(arr[item])
+                        }
+                  }
+                  alert(`Результат: ${cat(arr_new)}`)
+            }
+
+            function item_index(arr, item) {
+                  for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] === item) {
+                              return i
+                        }
+                  }
+            }
+            function insert_item(arr, item, index) {
+                  let arrout = []
+                  for (let i = 0; i < arr.length; i++) {
+                        arrout.push(arr[i])
+                        if (i === index) {
+                              arrout.push(item)
+                        }
+                  }
+                  return arrout
+            }
+            function t10() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  let inserting = readnums("Введите штуку которую вы хотите положить в массив.\nВведите после какого элемента вы хотите это положить.\nФормат ввода: штука элемент")
+                  let new_arr = insert_item(arr, inserting[0], item_index(arr, inserting[1]))
+                  alert(`Результат: ${cat(new_arr)}`)
+            }
+
+            function sort_numbers(arr, reverse = false) {
+                  if (reverse) {
+                        for (let i = 0; i < arr.length - 1; i++) {
+                              for (let j = 0; j < arr.length - i - 1; j++) {
+                                    if (arr[j] < arr[j + 1])
+                                          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                              }
+                        }
+                        return arr
+                  }
+                  for (let i = 0; i < arr.length - 1; i++) {
+                        for (let j = 0; j < arr.length - i - 1; j++) {
+                              if (arr[j] > arr[j + 1])
+                                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        }
+                  }
+                  return arr
+            }
+            function t11() {
+                  let arr = readnums("Введите ряд чисел.")
+                  alert(`Отсортированный массив: ${cat(sort_numbers(arr))}`)
+            }
+
+            function t12() {
+                  let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
+                  alert(`Отсортированный массив: ${cat(sort_numbers(arr, true))}`)
+            }
+
+            function readchars(string, split_labels = ' ', skip, make_output = 1, to_lower_case = '') {
+                  let arr2 = prompt(string).split(split_labels)
+                  let arr2copy = []
+                  let arr2out = ''
+                  for (pt in arr2) {
+                        if (arr2[pt] === skip) {
+                              continue
+                        }
+                        if (to_lower_case === "lowercase") {
+                              arr2[pt] = arr2[pt].toLowerCase()
+                        }
+                        arr2copy.push(arr2[pt])
+                  }
+                  if (make_output === 1) {
+                        for (a in arr2) {
+                              arr2out = `${arr2out}${arr2[a]}${split_labels}`
+                        }
+                        alert(`Массив: ${arr2out.trim()}`)
+                  }
+
+                  return arr2copy
+            }
+            function has(item, arr) {
+                  for (a in arr) {
+                        if (arr[a] === item) {
+                              return true
+                        }
+                  }
+                  return false
+            }
+            function t13() {
+                  let vocal = "aeuioy"
+                  let arr = readchars("Введите английское слово.", '', null, 1, "lowercase")
+                  let arr_new = []
+                  for (let a of arr) {
+                        if (has(a, vocal)) {
+                              arr_new.push(a)
+                        }
+                  }
+                  for (let a of arr) {
+                        if (!has(a, vocal)) {
+                              arr_new.push(a)
+                        }
+                  }
+                  alert(`Результат: ${cat(arr_new, '')}`)
+            }
+
+            function count_digits(number) {
+                  // deps: has
+                  let count = 0
+                  let digits = "0123456789"
+                  for (a in number) {
+                        if (has(number[a], digits)) {
+                              count++
+                        }
+                  }
+                  return count
+            }
+            function parse_numbers(arr) {
+                  let arr_new = []
+                  for (let number of arr) {
+                        arr_new.push(Number(number))
+                  }
+                  return arr_new
+            }
+            function t14() {
+                  let number = prompt("Введите ряд чисел, разделив их пробелами.")
+                  alert(`Количество цифер: ${count_digits(number)}`)
+                  let arr = number.split('')
+                  alert(`Результат: ${cat(parse_numbers(arr))}`)
+            }
+      </script>
+</body>
+
+</html>
