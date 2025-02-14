@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания по функция</title>
+</head>
+
+<body>
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу чтобы запустить задания.</p>
+
+      <button onclick="alert(identify_polar(Number(prompt('Введите число.'))))">identify_polar</button>
+      <button onclick="alert(factorial(Number((prompt('Введите число.')))))">factorial</button>
+      <button onclick="alert(join_digits(12, 34, 56))">join_digits</button>
+      <button onclick="alert(`${rectangle_area(10, 14)} ${rectangle_area(3)}`)">rectangle_area</button>
+      <button onclick="alert(is_perfect_number(Number(prompt('Введите число.'))))">is_prime_number</button>
+      <button onclick="alert(show_perfects_in_range(4000, 1))">show_primes_in_range</button>
+      <button onclick="alert(join_clock(12, 33, 9))">join_clock</button>
+      <button onclick="alert(clock_in_seconds(6, 13, 23))">clock_in_seconds</button>
+      <button
+            onclick="alert(join_clock_from_seconds(Number(prompt('Введите число.'))))">join_clock_from_seconds</button>
+      <button onclick="alert(join_clock_difference(12, 4, 5, 3, 43, 54))">join_clock_difference</button>
+      <script>
+
+            function identify_polar(number) {
+                  if (number === 0) {
+                        return 0
+                  }
+                  return number > 0 ? 1 : -1
+            }
+
+            function factorial(number) {
+                  let factorial_sum = 1
+                  for (let i = 1; i <= number; i++) {
+                        factorial_sum = factorial_sum * i
+                  }
+                  return factorial_sum
+            }
+
+            function join_digits(n1, n2, n3) {
+                  return [n1, n2, n3].join('')
+            }
+
+            function rectangle_area(a, b = a) {
+                  return a * b
+            }
+
+            function is_perfect_number(number) {
+                  let divisors_sum = 0
+                  for (let i = 1; i < number; i++) {
+                        if (number % i === 0) {
+                              divisors_sum += i
+                        }
+                  }
+                  return divisors_sum === number
+            }
+
+            function show_perfects_in_range(max, min) {
+                  let perfects_log = []
+                  for (let i = min; i <= max; i++) {
+                        if (is_perfect_number(i)) {
+                              perfects_log.push(i)
+                        }
+                  }
+                  return perfects_log.join(' ')
+            }
+
+            function join_clock(hours, minutes = '00', seconds = '00') {
+                  return [
+                        hours < 10 ? `0${hours}` : hours,
+                        minutes < 10 ? `0${minutes}` : minutes,
+                        seconds < 10 ? `0${seconds}` : seconds
+                  ].join(':')
+            }
+
+            function clock_in_seconds(hours, minutes, seconds) {
+                  return hours * 3600 + minutes * 60 + seconds
+            }
+
+            function join_clock_from_seconds(seconds) {
+                  const h = parseInt(seconds / 3600)
+                  const m = parseInt((seconds % 3600) / 60)
+                  const s = seconds % 60
+
+                  return join_clock(h, m, s)
+            }
+
+            function join_clock_difference(h1, m1, s1, h2, m2, s2) {
+                  const seconds1 = clock_in_seconds(h1, m1, s1)
+                  const seconds2 = clock_in_seconds(h2, m2, s2)
+                  return join_clock_from_seconds(Math.max(seconds1, seconds2) - Math.min(seconds1, seconds2))
+            }
+      </script>
+</body>
+
+</html>
