@@ -62,9 +62,7 @@
             function t1() {
                   let arr = readnums("Введите ряд чисел, разделив числа пробелами.")
                   let c = [0, 0, 0, 0, 0]
-                  let output = ""
-                  for (a in arr) {
-                        output = `${output} ${arr}`
+                  for (let a of arr) {
                         if (a > 0) {
                               c[0]++
                         }
