@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Задания по 2D массивам</title>
+</head>
+
+<body>
+      <h1>Менеджер заданий</h1>
+      <p>Нажмите на кнопки снизу для запуска соответсвующего задания.</p>
+
+      <button onclick="t1()">Задание 1</button>
+      <button onclick="t2()">Задание 2</button>
+      <button onclick="t3()">Задание 3</button>
+      <button onclick="t4()">Задание 4</button>
+      <button onclick="t5()">Задание 5</button>
+      <button onclick="t6()">Задание 6</button>
+      <button onclick="t7()">Задание 7</button>
+      <button onclick="t8()">Задание 8</button>
+      <button onclick="t_magaz()">Задание махаз</button>
+      <script>
+            function t1() {
+                  let matrix = [[], [], [], [], []]
+                  let matrix_out = ''
+                  for (let i = 0; i < 5; i++) {
+                        for (let j = 1; j <= 5; j++) {
+                              matrix[i].push(j)
+                        }
+                  }
+
+                  for (i in matrix) {
+                        for (j in matrix) {
+                              matrix_out = `${matrix_out}${matrix[i][j]} `
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert(matrix_out)
+            }
+
+            function t2() {
+                  let matrix = [[], [], [], [], []]
+                  let matrix_out = ''
+                  let some = 1
+                  for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 5; j++) {
+                              matrix[i].push(some)
+                              some++
+                        }
+                  }
+
+                  for (i in matrix) {
+                        for (j in matrix) {
+                              matrix_out = `${matrix_out}${matrix[i][j]} `
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert(matrix_out)
+                  matrix_out = ''
+
+                  let wiping_branch_index = Number(prompt('Введите номер строки которую вы хотите уайпнуть, от 1 до 5.'))
+                  let new_matrix = [[], [], [], []]
+
+                  let num = 0
+                  for (let i = 0; i < matrix.length; i++) {
+                        if (i === wiping_branch_index - 1) {
+                              continue
+                        }
+                        new_matrix[num] = matrix[i]
+                        num++
+                  }
+
+                  for (i in new_matrix) {
+                        for (j in new_matrix[i]) {
+                              matrix_out = `${matrix_out}${new_matrix[i][j]} `
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert(matrix_out)
+            }
+
+            function t3() {
+                  let matrix = [[], [], [], [], []]
+                  let matrix_out = ''
+                  let some = 1
+                  for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 5; j++) {
+                              matrix[i].push(some)
+                              some++
+                        }
+                  }
+
+                  for (i in matrix) {
+                        for (j in matrix) {
+                              matrix_out = `${matrix_out} ${matrix[i][j]}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert(matrix_out)
+                  matrix_out = ''
+
+                  for (i in matrix) {
+                        matrix_out = `${matrix_out}${"  ".repeat(i)}${matrix[i][i]}\n`
+                  }
+
+                  alert(matrix_out)
+            }
+
+            function t4() {
+                  let matrix = [[], [], [], [], []]
+                  let matrix_out = ''
+                  let some = 1
+                  for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 5; j++) {
+                              matrix[i].push(some)
+                              some++
+                        }
+                  }
+
+                  for (i in matrix) {
+                        for (j in matrix) {
+                              matrix_out = `${matrix_out} ${matrix[i][j]}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert(matrix_out)
+                  matrix_out = ''
+
+                  let numa = i
+                  for (i in matrix) {
+                        matrix_out = `${matrix_out}${"  ".repeat(numa - i)}${matrix[i][numa - i]}\n`
+                  }
+
+                  alert(matrix_out)
+            }
+
+            function t5() {
+                  let predel = Number(prompt("Введите предел таблицы умножения."))
+                  let matrixfull = []
+                  let matrix_out = ''
+                  let some = 1
+
+                  for (let i = 0; i < 10; i++) {
+                        matrixfull.push([])
+                        for (let j = 1; j < 11; j++) {
+                              matrixfull[i].push(j * some)
+                              some++
+                        }
+                        some = 1
+                  }
+
+                  console.log(matrixfull[3])
+
+                  let run = true
+                  let i = 0
+                  while (run) {
+                        for (let j = 0; j < matrixfull[i].length; j++) {
+                              if (matrixfull[i][j] >= predel) {
+                                    run = false
+                                    break
+                              }
+                              matrix_out = `${matrix_out} ${matrixfull[i][j]}`
+                        }
+                  }
+                  alert(matrix_out)
+            }
+
+            function t6() {
+                  let matrix = []
+                  let matrix_out = ''
+                  let n = 10
+                  for (let i = 0; i < n; i++) {
+                        matrix[i] = []
+                        for (let j = 0; j < n; j++) {
+                              matrix[i][j] = 0
+                        }
+                  }
+
+                  let num = 1
+                  let start = 0, end = n - 1
+                  let col_start = 0, col_end = n - 1
+
+                  while (start <= end && col_start <= col_end) {
+                        for (let i = col_start; i <= col_end; i++) {
+                              matrix[start][i] = num++
+                        }
+                        start++
+
+                        for (let i = start; i <= end; i++) {
+                              matrix[i][col_end] = num++
+                        }
+                        col_end--
+
+                        if (start <= end) {
+                              for (let i = col_end; i >= col_start; i--) {
+                                    matrix[end][i] = num++;
+                              }
+                              end--;
+                        }
+
+                        if (col_start <= col_end) {
+                              for (let i = end; i >= start; i--) {
+                                    matrix[i][col_start] = num++
+                              }
+                              col_start++
+                        }
+                  }
+                  for (i in matrix) {
+                        for (j in matrix[i]) {
+                              matrix_out = `${matrix_out}${matrix[i][j]} ${" ".repeat(3 - `${matrix[i][j]}`.length)}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert("Откройте консоль")
+                  console.log(matrix_out)
+            }
+
+            function get_random_int(max) {
+                  return Math.floor(Math.random() * max);
+            }
+            function t7() {
+                  let matrix = []
+                  let matrix_out = ''
+                  let n = 10
+                  let max_num = 0
+                  let min_num = 50
+                  let y_max = 0, y_min = 0, x_max = 0, x_min = 0
+                  for (let i = 0; i < n; i++) {
+                        matrix[i] = []
+                        for (let j = 0; j < n; j++) {
+                              matrix[i][j] = get_random_int(100) + 1
+                        }
+                  }
+
+                  for (let y = 0; y < matrix.length; y++) {
+                        for (let x = 0; x < matrix[y].length; x++) {
+                              if (max_num < matrix[y][x]) {
+                                    max_num = matrix[y][x]
+                                    y_max = y
+                                    x_max = x
+                              }
+                        }
+                  }
+
+                  for (let y = 0; y < matrix.length; y++) {
+                        for (let x = 0; x < matrix[y].length; x++) {
+                              if (min_num > matrix[y][x]) {
+                                    min_num = matrix[y][x]
+                                    y_min = y
+                                    x_min = x
+                              }
+                        }
+                  }
+
+                  let maxnmin_y = [matrix[y_max], matrix[y_min]]
+                  if (matrix[y_max][x_max] === matrix[y_min][x_min]) {
+                        for (let i = 0; i < matrix[y_max].length; i++) {
+                              matrix[y_max][i] = 0
+                        }
+                        for (let i = 0; i < matrix[y_min].length; i++) {
+                              matrix[y_min][i] = 0
+                        }
+                  }
+                  [matrix[y_min], matrix[y_max]] = matrix
+
+                  for (i in matrix) {
+                        for (j in matrix[i]) {
+                              matrix_out = `${matrix_out}${matrix[i][j]} ${" ".repeat(3 - `${matrix[i][j]}`.length)}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+
+                  alert("Откройте консоль")
+                  console.log(matrix_out, '\nНаибольшее число: ', max_num, '\nНаименьшее число: ', min_num, "\nСтерты:\nСтрока с наибольшим числом: ", maxnmin_y[0], "\nСтрока с наименьшим числом: ", maxnmin_y[1])
+            }
+
+            function bubble_sort_matrix(matrix) {
+                  if (matrix.length === 0) {
+                        return matrix;
+                  }
+
+                  const rows = matrix.length;   // по горизонтали
+                  const cols = matrix[0].length;
+                  for (let i = 0; i < rows; i++) {
+                        for (let j = 0; j < cols - 1; j++) {
+                              for (let k = 0; k < cols - j - 1; k++) {
+                                    if (matrix[i][k] > matrix[i][k + 1]) {
+                                          [matrix[i][k], matrix[i][k + 1]] = [matrix[i][k + 1], matrix[i][k]];
+                                    }
+                              }
+                        }
+                  }
+
+                  for (let j = 0; j < cols; j++) {    // по вертикали
+                        for (let i = 0; i < rows - 1; i++) {
+                              for (let k = 0; k < rows - i - 1; k++) {
+                                    if (matrix[k][j] > matrix[k + 1][j]) {
+                                          [matrix[k][j], matrix[k + 1][j]] = [matrix[k + 1][j], matrix[k][j]];
+                                    }
+                              }
+                        }
+                  }
+
+                  return matrix;
+            }
+            function t8() {
+                  let matrix = []
+                  let matrix_out = ''
+                  let n = 10
+                  for (let i = 0; i < n; i++) {
+                        matrix[i] = []
+                        for (let j = 0; j < n; j++) {
+                              matrix[i][j] = get_random_int(100) + 1
+                        }
+                  }
+
+                  for (i in matrix) {
+                        for (j in matrix[i]) {
+                              matrix_out = `${matrix_out}${matrix[i][j]} ${" ".repeat(3 - `${matrix[i][j]}`.length)}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+                  console.log("Исходная матрица:\n\n" + matrix_out)
+
+                  let sorted_matrix = bubble_sort_matrix(matrix)
+
+                  matrix_out = ''
+                  for (i in sorted_matrix) {
+                        for (j in sorted_matrix[i]) {
+                              matrix_out = `${matrix_out}${sorted_matrix[i][j]} ${" ".repeat(3 - `${sorted_matrix[i][j]}`.length)}`
+                        }
+                        matrix_out = `${matrix_out}\n`
+                  }
+                  console.log("Отсортированная матрица:\n\n" + matrix_out)
+            }
+
+            function t_magaz() {
+                  let magaz = [
+                        [12345, "Товар 1", 90000, 120],
+                        [12346, "Товар 2", 92000, 56],
+                        [12347, "Товар 3", 90300, 1300],
+                        [12348, "Товар 4", 90040, 9],
+                  ]
+                  let max_articul = 12348
+                  let magaz_out = 'Артикул   Товар     Цена      Количество\n\n'
+
+                  for (let i = 0; i < magaz.length; i++) {
+                        for (let j = 0; j < 4; j++) {
+                              magaz_out = `${magaz_out}${magaz[i][j]}${" ".repeat(15 - `${magaz[i][j]}`.length)}`
+                        }
+                        magaz_out = `${magaz_out}\n`
+                  }
+                  console.log(magaz_out)
+
+                  let new_tovar = prompt("Добавьте новый товар.\nПишите разделив пробелами:\nИмя товара (не больше 14 букв), цена и количество.").split(' ')
+                  new_tovar[1] = Number(new_tovar[1])
+                  new_tovar[2] = Number(new_tovar[2])
+                  magaz.push([++max_articul].concat(new_tovar))
+
+                  edit_tovar_aricul = prompt("Введите артикул товара который вы хотите отредачить, новое название, новую цену и новое количество разделив пробелами.").split(" ")
+                  edit_tovar_aricul[0] = Number(edit_tovar_aricul[0])
+                  edit_tovar_aricul[2] = Number(edit_tovar_aricul[2])
+                  edit_tovar_aricul[3] = Number(edit_tovar_aricul[3])
+
+                  for (let i = 0; i < magaz.length; i++) {
+                        if (magaz[i][0] === edit_tovar_aricul[0]) {
+                              magaz[i][1] = edit_tovar_aricul[1]
+                              magaz[i][2] = edit_tovar_aricul[2]
+                              magaz[i][3] = edit_tovar_aricul[3]
+                              break
+                        }
+                  }
+
+                  let delete_tovar = Number(prompt("Введите артикул товара который вы хотите удалить"))
+
+                  let new_magaz = []
+                  for (let i = 0; i < magaz.length; i++) {
+                        if (magaz[i][0] === delete_tovar) {
+                              continue
+                        }
+                        new_magaz.push(magaz[i])
+                  }
+
+                  magaz = new_magaz
+
+                  magaz_out = 'Новый магазин:\n'
+                  for (let i = 0; i < magaz.length; i++) {
+                        for (let j = 0; j < 4; j++) {
+                              magaz_out = `${magaz_out}${magaz[i][j]}${" ".repeat(15 - `${magaz[i][j]}`.length)}`
+                        }
+                        magaz_out = `${magaz_out}\n`
+                  }
+                  console.log(magaz_out)
+            }
+      </script>
+</body>
+
+</html>
