@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1, p {
+    margin: 40px 0 0 0;
+  }
+</style>
+<body>
+  <main>
+    <h1>Задания по классам</h1>
+    <p>Откройте терминал</p>
+  </main>
+</body>
+<script>
+    class User {
+      constructor(name, age, user) {
+        this.name = name
+        this.age = age
+        this.role = "user"
+      }
+      describe = () => {
+        for (let property in this) {
+          console.log(this[property])
+        }
+      }
+    }
+
+    class Admin extends User {
+      constructor(name, age) {
+        super(name, age)
+        this.func = ["kick", "mute"]
+        this.pass = true
+        this.session = "admin"
+      }
+      deleteUser = (user) => {
+        console.log("пользователь ", user, " был удален.\n")
+      }
+    }
+  
+    class Moderator extends User {
+      constructor(name, age) {
+        super (name, age)
+        this.categories = ["chan_mod"]
+        this.users = "all"
+        this.pass = true
+      }
+
+      editUser = (user, newName) => {
+        user.name = newName
+      }
+    }
+
+    let users = [
+      new User("Andrew", 30), 
+      new Moderator("Jacob", 32), 
+      new Admin("Julia", 25),
+      new User("idk", 10),
+      new User("idk", 12)
+    ]
+
+    for (let user of users) {
+      user.describe()
+      console.log("\n\n\n")
+    }
+
+    users[2].deleteUser(users[3])
+
+    users[1].editUser(users[4], "Pichoten")
+
+    class SuperAdmin extends Admin {
+      constructor(name, age, func, pass, session) {
+        super(name, age, func, pass, session)
+        this.func.push("ban")
+        this.func.push("nuke")
+      }
+
+      banUser = (user) => {
+        user.banned = true
+      }
+    }
+
+    let superadmin = new SuperAdmin("Kim Yo Jong", 37)
+    superadmin.describe()
+</script>
+</html>
