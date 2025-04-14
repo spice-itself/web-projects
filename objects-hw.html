@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ по объектам</title>
+</head>
+<body>
+  
+
+  <script>
+    class Groceries {
+      constructor(name, needed, isPurchased) {
+        self.name = name
+        needed = needed
+        isPurchased = isPurchased
+      }
+    }
+
+    function GroceriesOut() {
+      for (let i = 0; i < groceriesList.length; i++) {
+        if (groceriesList[i].isPurchased) {
+          console.log(groceriesList[i])
+        }
+      }
+      for (let i = 0; i < groceriesList.length; i++) {
+        if (!groceriesList[i].isPurchased) {
+          console.log(groceriesList[i])
+        }
+      }
+    }
+
+    function NewGrocery(listSlice) {
+      let doIAddIt = false
+      for (let i = 0; i < groceriesList.length; i++) {
+        if (groceriesList[i].name == listSlice[0]) {
+          groceriesList.needed++
+          doIAddIt = true
+        }
+      }
+      if (doIAddIt) {
+        groceriesList.push_back(new Groceries(listSlice[0], listSlice[1], listSlice[2]))
+      }
+    }
+
+    function Purchase(groceryName) {
+      for (let i = 0; i < groceriesList.length; i++) {
+        if (groceriesList[i].isPurchased) {
+          continue
+        }
+        if (groceriesList[i].name == groceryName) {
+          groceriesList[i].isPurchased = true
+        }
+      }
+    }
+
+    let groceriesList = [new Groceries("Бананы", 1, false), new Groceries("Молоко", 1, false), new Groceries("Хлопья", 1, false)]
+
+
+
+  </script>
+</body>
+</html>

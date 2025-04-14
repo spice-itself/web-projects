@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ДЗ по объектам</title>
+</head>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: none;
+    padding: none;
+  }
+
+  body {
+    background-color: black;
+  }
+
+  p {
+    color: gray;
+    font-family: monospace;
+    font-size: 18px;
+    line-height: 20px;
+  }
+</style>
+
+<body>
+
+  <main id="console">
+    <p>Консоль типа</p>
+  </main>
+  <div id="buttons" style="display: flex;">
+    <button onclick="PrintAllAuditories()">Показать аудиторий</button>
+    <button onclick="kurwasort_AuditoriesBySeatsNumber()">Отсортировать аудиторий по количеству мест</button>
+    <button onclick="SortAuditoriesByLetters()">Отсортировать аудиторий по алфавиту</button>
+    <input type="text" id="input" placeholder="Введите что-то">
+    <button onclick="handleGroupInput()">Показать аудиторий для группы</button>
+    <button onclick="handleFacultyInput()">Показать аудиторий по факультету</button>
+  </div>
+
+
+
+  <script>
+    class Auditory {
+      constructor(name, seatsNumber, faculty) {
+        this.name = name
+        this.seatsNumber = seatsNumber
+        this.faculty = faculty
+      }
+      GetInfo() {
+        return `Name: ${this.name}<br>Seats number: ${this.seatsNumber}<br>Faculty: ${this.faculty}\n`
+      }
+    }
+
+    class Group extends Auditory {
+      constructor(name, faculty, studentsNumber) {
+        super(name, 0, faculty)
+        this.studentsNumber = studentsNumber
+      }
+    }
+
+    let auditories = [new Auditory("Slytherin", 30, "frontend dev"), new Auditory("Ravenclaw", 50, "backend dev"), new Auditory("Slytherin 2", 40, "frontend dev")]
+    let groups = [new Group("21 TIS", "frontend dev", 30), new Group("22 TIS", "backend dev", 25)]
+
+    const theConsole = document.getElementById("console")
+    function PrintHTML(string) {
+      let newOutput = document.createElement('p')
+      newOutput.innerHTML = string
+      theConsole.append(newOutput)
+    }
+
+    function handleGroupInput() {
+      const input = document.getElementById("input");
+      const groupName = input.value.trim();
+      if (!groupName) {
+        PrintHTML("Пожалуйста, введите название группы");
+        return;
+      }
+      const group = groups.find(g => g.name.toLowerCase() === groupName.toLowerCase());
+      if (!group) {
+        PrintHTML(`Группа "${groupName}" не найдена ❌`);
+        return;
+      }
+      PrintAuditoriesForGroup(group);
+    }
+
+    function handleFacultyInput() {
+      const input = document.getElementById("input");
+      const fac = input.value.trim();
+      if (!fac) {
+        PrintHTML("Пожалуйста, введите факультет");
+        return;
+      }
+      PrintAuditoriesOfFaculty(fac);
+    }
+
+    function PrintAllAuditories() {
+      PrintHTML(`Аудиторий:<br>`)
+      for (let auditory of auditories) {
+        PrintHTML(auditory.GetInfo())
+      }
+    }
+
+    function PrintAuditoriesForGroup(group) {
+      const suitableAuditories = auditories.filter(auditory =>
+        auditory.seatsNumber >= group.studentsNumber &&
+        auditory.faculty.toLowerCase() === group.faculty.toLowerCase()
+      );
+      PrintHTML(`${group.name} (${group.studentsNumber} студентов, ${group.faculty})`);
+
+      if (suitableAuditories.length === 0) {
+        PrintHTML("Нет подходящих аудиторий 🏫");
+      } else {
+        PrintHTML(`Доступные аудитории (${suitableAuditories.length}):`);
+        suitableAuditories.forEach(auditory => PrintHTML(auditory.GetInfo()));
+      }
+    }
+
+    function PrintAuditoriesOfFaculty(faculty) {
+      const AF = auditories.filter(auditory => auditory.faculty === faculty)
+      PrintHTML(`Аудиторий по факультету "${faculty}":`)
+      if (AF.length === 0) {
+        PrintHTML(`Не найдено.`)
+      } else {
+        for (let A of AF) {
+          PrintHTML(A.GetInfo())
+        }
+      }
+    }
+
+    function kurwasort_AuditoriesBySeatsNumber(low = 0, high = auditories.length - 1) {
+      if (low < high) {
+        const pivotIdx = part(low, high);
+        kurwasort_AuditoriesBySeatsNumber(low, pivotIdx - 1);
+        kurwasort_AuditoriesBySeatsNumber(pivotIdx + 1, high);
+      }
+    }
+    function part(low, high) {
+      const pivot = auditories[high].seatsNumber;
+      let i = low - 1;
+      for (let j = low; j < high; j++) {
+        if (auditories[j].seatsNumber <= pivot) {
+          i++;
+          [auditories[i], auditories[j]] = [auditories[j], auditories[i]];
+        }
+      }
+      [auditories[i + 1], auditories[high]] = [auditories[high], auditories[i + 1]];
+      return i + 1;
+    }
+
+    function SortAuditoriesByLetters() {
+      auditories.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+
+
+  </script>
+</body>
+
+</html>
